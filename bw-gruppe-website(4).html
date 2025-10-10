@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BW GRUPPE - Immobilienankauf in Stuttgart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f1419;
+            --secondary: #1a2332;
+            --accent: #5b8fc7;
+            --accent-light: #7ba7d8;
+            --accent-dark: #4a78a8;
+            --silver: #c0c8d4;
+            --dark: #050810;
+            --light: #f5f7fa;
+            --gray: #6b7280;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(91, 143, 199, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(15, 20, 25, 0.98);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 4px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        @media (max-width: 480px) {
+            .hero-video {
+                display: none;
+            }
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(15, 20, 25, 0.90) 0%, 
+                rgba(15, 20, 25, 0.78) 50%, 
+                rgba(26, 35, 50, 0.85) 100%);
+            z-index: 1;
+        }
+
+        .hero-video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            transition: opacity 0.5s ease;
+        }
+
+        .hero-video-placeholder.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.7rem 1.8rem;
+            background: rgba(91, 143, 199, 0.12);
+            border: 1px solid rgba(91, 143, 199, 0.3);
+            color: var(--accent-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge i {
+            font-size: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s both;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-light);
+            position: relative;
+        }
+
+        .hero-volume {
+            display: inline-flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1.5rem 2.5rem;
+            background: rgba(91, 143, 199, 0.08);
+            border-left: 4px solid var(--accent);
+            margin: 2rem 0;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-volume-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .hero-volume-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-volume-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-volume-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            animation: fadeInUp 1s ease 0.4s both;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            min-height: 50px;
+        }
+
+        .btn i {
+            transition: transform 0.3s;
+        }
+
+        .btn:hover i {
+            transform: translateX(3px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.4s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            box-shadow: 0 15px 40px rgba(91, 143, 199, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(91, 143, 199, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-light);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Section Base */
+        section {
+            padding: 8rem 3rem;
+            position: relative;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        .section-dark {
+            background: var(--primary);
+        }
+
+        .section-light {
+            background: linear-gradient(180deg, var(--light) 0%, #ffffff 100%);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(91, 143, 199, 0.1);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-dark .section-badge {
+            background: rgba(91, 143, 199, 0.15);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .section-dark .section-title {
+            color: var(--white);
+        }
+
+        .section-description {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section-dark .section-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Ankauf Section with Map */
+        .ankauf {
+            background: var(--primary);
+        }
+
+        .ankauf-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+            align-items: start;
+        }
+
+        .ankauf-map {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(91, 143, 199, 0.2);
+            padding: 3rem;
+            position: relative;
+            min-height: 500px;
+            border-radius: 8px;
+        }
+
+        .map-svg {
+            width: 100%;
+            height: 450px;
+        }
+
+        .map-title {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .ankauf-details {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2.5rem;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .detail-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+        }
+
+        .detail-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(91, 143, 199, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .detail-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .detail-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .detail-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .detail-list li {
+            padding: 0.6rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .detail-list li i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Ankaufsprozess */
+        .prozess-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .prozess-step {
+            background: white;
+            padding: 3rem 2rem;
+            transition: all 0.4s;
+            position: relative;
+            border-top: 3px solid var(--accent);
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .prozess-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(91, 143, 199, 0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 35px;
+            height: 35px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .prozess-step h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .prozess-step p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Objekttypen */
+        .objekttypen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .objekt-card {
+            aspect-ratio: 4/3;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(91, 143, 199, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .objekt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .objekt-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .objekt-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .objekt-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(91, 143, 199, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .objekt-card h3 {
+            font-size: 1.3rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* Team Section */
+        .team {
+            background: var(--light);
+        }
+
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-top: 3px solid var(--accent);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            overflow: hidden;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .team-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .team-role i {
+            font-size: 0.8rem;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Partner Section */
+        .partner {
+            background: var(--primary);
+        }
+
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .partner-logo {
+            aspect-ratio: 16/9;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(91, 143, 199, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            padding: 2rem;
+            border-radius: 8px;
+            gap: 1rem;
+        }
+
+        .partner-logo:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .partner-icon {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .partner-placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(91, 143, 199, 0.12);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-content h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .contact-item-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .contact-item-content a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-item-content a:hover {
+            color: var(--white);
+        }
+
+        .contact-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            padding: 4rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .contact-cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-cta h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .contact-cta p {
+            margin-bottom: 2.5rem;
+            color: var(--white);
+            opacity: 0.95;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(91, 143, 199, 0.2);
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .footer-brand h3 i {
+            color: var(--accent);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 1.2rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .ankauf-content {
+                grid-template-columns: 1fr;
+            }
+
+            .prozess-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .objekttypen-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-stats,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partner-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-content {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-volume {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .prozess-grid,
+            .objekttypen-grid,
+            .team-stats,
+            .team-grid,
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                BW GRUPPE
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#ankauf">Ankauf</a></li>
+                <li><a href="#prozess">Prozess</a></li>
+                <li><a href="#objekttypen">Objekttypen</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#partner">Partner</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-video-container">
+            <div class="hero-video-placeholder" id="videoPlaceholder"></div>
+            <video 
+                class="hero-video" 
+                id="heroVideo"
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                preload="auto"
+            >
+                <source src="https://bwgruppe.com/UP1/wp-content/uploads/BW-Real-Estate-Slider-Startseite.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-check-circle"></i>
+                Professioneller Immobilienankauf
+            </div>
+            <h1>Wir kaufen Ihre <span class="highlight">Immobilie</span><br>in ganz Deutschland</h1>
+            
+            <div class="hero-volume">
+                <i class="fas fa-chart-line hero-volume-icon"></i>
+                <div class="hero-volume-content">
+                    <div class="hero-volume-label">Ankaufsvolumen bis zu</div>
+                    <div class="hero-volume-amount">€ 50 Millionen</div>
+                </div>
+            </div>
+            
+            <p>Schneller, unkomplizierter Ankauf von Wohn- und Gewerbeimmobilien. Fair, diskret und professionell.</p>
+            
+            <div class="cta-buttons">
+                <a href="#kontakt" class="btn btn-primary">
+                    Immobilie verkaufen
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#ankauf" class="btn btn-secondary">
+                    Mehr erfahren
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ankauf Section mit Karte -->
+    <section class="ankauf section-dark" id="ankauf">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-handshake"></i>
+                    Unsere Expertise
+                </div>
+                <h2 class="section-title">Immobilienankauf</h2>
+                <p class="section-description">Wir kaufen Immobilien mit Potenzial in ganz Deutschland. Fokus auf A-, B- und C-Städte mit hohem Entwicklungspotenzial.</p>
+            </div>
+            
+            <div class="ankauf-content">
+                <div class="ankauf-map">
+                    <svg class="map-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background circles -->
+                        <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(91, 143, 199, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                        <circle cx="200" cy="200" r="100" fill="none" stroke="rgba(91, 143, 199, 0.3)" stroke-width="1" stroke-dasharray="5,5"/>
+                        <circle cx="200" cy="200" r="50" fill="rgba(91, 143, 199, 0.15)"/>
+                        
+                        <!-- Connection lines -->
+                        <line x1="200" y1="200" x2="280" y2="240" stroke="rgba(91, 143, 199, 0.3)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="200" y2="120" stroke="rgba(91, 143, 199, 0.3)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="120" y2="100" stroke="rgba(91, 143, 199, 0.3)" stroke-width="1"/>
+                        <line x1="200" y1="200" x2="300" y2="80" stroke="rgba(91, 143, 199, 0.3)" stroke-width="1"/>
+                        
+                        <!-- Stuttgart (Hauptsitz) -->
+                        <circle cx="200" cy="200" r="10" fill="#5b8fc7"/>
+                        <circle cx="200" cy="200" r="15" fill="none" stroke="#5b8fc7" stroke-width="2" opacity="0.3"/>
+                        <text x="200" y="180" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Stuttgart</text>
+                        
+                        <!-- München -->
+                        <circle cx="280" cy="240" r="7" fill="#7ba7d8"/>
+                        <text x="280" y="260" text-anchor="middle" fill="#fff" font-size="11">München</text>
+                        
+                        <!-- Frankfurt -->
+                        <circle cx="200" cy="120" r="7" fill="#7ba7d8"/>
+                        <text x="200" y="105" text-anchor="middle" fill="#fff" font-size="11">Frankfurt</text>
+                        
+                        <!-- Köln -->
+                        <circle cx="120" cy="100" r="7" fill="#7ba7d8"/>
+                        <text x="120" y="85" text-anchor="middle" fill="#fff" font-size="11">Köln</text>
+                        
+                        <!-- Berlin -->
+                        <circle cx="300" cy="80" r="7" fill="#7ba7d8"/>
+                        <text x="300" y="65" text-anchor="middle" fill="#fff" font-size="11">Berlin</text>
+                    </svg>
+                    <div class="map-title">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Ankaufsregionen in ganz Deutschland
+                    </div>
+                </div>
+                
+                <div class="ankauf-details">
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <div class="detail-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>Was wir ankaufen</h3>
+                        </div>
+                        <ul class="detail-list">
+                            <li><i class="fas fa-check-circle"></i> Mehrfamilienhäuser (ab 5 Einheiten)</li>
+                            <li><i class="fas fa-check-circle"></i> Wohn- und Geschäftshäuser</li>
+                            <li><i class="fas fa-check-circle"></i> Gewerbeimmobilien</li>
+                            <li><i class="fas fa-check-circle"></i> Portfolios & Immobilienpakete</li>
+                            <li><i class="fas fa-check-circle"></i> Sanierungsobjekte mit Potenzial</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <div class="detail-icon">
+                                <i class="fas fa-euro-sign"></i>
+                            </div>
+                            <h3>Ankaufsvolumen</h3>
+                        </div>
+                        <p><strong>Einzelobjekte:</strong> ab € 500.000<br>
+                        <strong>Portfolios:</strong> bis € 50 Millionen<br>
+                        <strong>Eigenkapital:</strong> Volle Kaufkraft</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <div class="detail-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Fokusregionen</h3>
+                        </div>
+                        <ul class="detail-list">
+                            <li><i class="fas fa-map-pin"></i> Baden-Württemberg (Stuttgart, Karlsruhe, Freiburg)</li>
+                            <li><i class="fas fa-map-pin"></i> Bayern (München, Nürnberg, Augsburg)</li>
+                            <li><i class="fas fa-map-pin"></i> Nordrhein-Westfalen (Köln, Düsseldorf, Dortmund)</li>
+                            <li><i class="fas fa-map-pin"></i> Hessen (Frankfurt, Wiesbaden)</li>
+                            <li><i class="fas fa-map-pin"></i> Weitere A-, B- und C-Städte deutschlandweit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ankaufsprozess -->
+    <section class="prozess section-light" id="prozess">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-tasks"></i>
+                    So einfach geht's
+                </div>
+                <h2 class="section-title">Unser Ankaufsprozess</h2>
+                <p class="section-description">In nur 4 Schritten zur erfolgreichen Transaktion – schnell, transparent und unkompliziert.</p>
+            </div>
+            
+            <div class="prozess-grid">
+                <div class="prozess-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Kontaktaufnahme</h3>
+                    <p>Sie nehmen Kontakt zu uns auf und schildern uns Ihr Objekt. Erste Einschätzung erfolgt innerhalb von 24 Stunden.</p>
+                </div>
+
+                <div class="prozess-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Objektprüfung</h3>
+                    <p>Wir besichtigen Ihre Immobilie vor Ort und führen eine professionelle Bewertung durch.</p>
+                </div>
+
+                <div class="prozess-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Angebot</h3>
+                    <p>Sie erhalten ein verbindliches Kaufangebot zu fairen Konditionen – transparent und nachvollziehbar.</p>
+                </div>
+
+                <div class="prozess-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Abwicklung</h3>
+                    <p>Schnelle notarielle Beurkundung und zügige Kaufpreiszahlung. Auf Wunsch übernehmen wir die Verwaltung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objekttypen Section -->
+    <section class="objekttypen section-dark" id="objekttypen">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-list"></i>
+                    Unser Portfolio
+                </div>
+                <h2 class="section-title">Objekttypen</h2>
+                <p class="section-description">Wir kaufen verschiedenste Immobilientypen – von Wohnimmobilien bis zu Gewerbe und Portfolios.</p>
+            </div>
+            
+            <div class="objekttypen-grid">
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Mehrfamilienhäuser</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Wohn- & Geschäftshäuser</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Gewerbeimmobilien</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Sanierungsobjekte</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Portfolios</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <h3>Grundstücke</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team section-light" id="team">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-users"></i>
+                    Über uns
+                </div>
+                <h2 class="section-title">Unser Team</h2>
+                <p class="section-description">Mit über 50 Mitarbeitern sind wir Ihr verlässlicher Partner für professionellen Immobilienankauf.</p>
+            </div>
+            
+            <div class="team-stats">
+                <div class="stat-card">
+                    <i class="fas fa-users stat-icon"></i>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Mitarbeiter</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-alt stat-icon"></i>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Jahre Erfahrung</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line stat-icon"></i>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Transaktionen</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-euro-sign stat-icon"></i>
+                    <div class="stat-number">€50M</div>
+                    <div class="stat-label">Ankaufsvolumen</div>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Max Mustermann</div>
+                        <div class="team-role">
+                            <i class="fas fa-briefcase"></i>
+                            Geschäftsführer
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Anna Schmidt</div>
+                        <div class="team-role">
+                            <i class="fas fa-briefcase"></i>
+                            Abteilungsleitung Ankauf
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Peter Müller</div>
+                        <div class="team-role">
+                            <i class="fas fa-briefcase"></i>
+                            Portfolio Manager
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Sarah Becker</div>
+                        <div class="team-role">
+                            <i class="fas fa-briefcase"></i>
+                            Objektmanagement
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Section -->
+    <section class="partner section-dark" id="partner">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-handshake"></i>
+                    Netzwerk
+                </div>
+                <h2 class="section-title">Unsere Partner</h2>
+                <p class="section-description">Starke Partnerschaften mit führenden Banken, Dienstleistern und Institutionen.</p>
+            </div>
+            
+            <div class="partner-grid">
+                <div class="partner-logo">
+                    <i class="fas fa-university partner-icon"></i>
+                    <div class="partner-placeholder">Bank Partner</div>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-shield-alt partner-icon"></i>
+                    <div class="partner-placeholder">Versicherung</div>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-industry partner-icon"></i>
+                    <div class="partner-placeholder">Rohstoffhändler</div>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-calculator partner-icon"></i>
+                    <div class="partner-placeholder">Steuerberatung</div>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-balance-scale partner-icon"></i>
+                    <div class="partner-placeholder">Rechtsberatung</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-dark" id="kontakt">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-envelope"></i>
+                    Kontakt
+                </div>
+                <h2 class="section-title">Verkaufen Sie uns Ihre Immobilie</h2>
+                <p class="section-description">Nehmen Sie Kontakt auf und erhalten Sie ein unverbindliches Angebot innerhalb von 24 Stunden.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <h3>Adresse</h3>
+                            <p>Withauweg 3<br>70439 Stuttgart<br>Deutschland</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <h3>Telefon</h3>
+                            <p><a href="tel:+4971162005980">+49 711 620 059 80</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <h3>E-Mail</h3>
+                            <p><a href="mailto:info@bwgruppe.com">info@bwgruppe.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <h3>Öffnungszeiten</h3>
+                            <p>Montag - Freitag: 9:00 - 18:00 Uhr<br>Termine nach Vereinbarung</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <div class="contact-cta-content">
+                        <h3>Immobilie bewerten lassen?</h3>
+                        <p>Kontaktieren Sie uns für eine kostenlose Erstbewertung Ihrer Immobilie. Diskret, schnell und unverbindlich.</p>
+                        <a href="tel:+4971162005980" class="btn btn-primary" style="background: white; color: var(--accent);">
+                            <i class="fas fa-phone-alt"></i>
+                            Jetzt anrufen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>
+                    <i class="fas fa-building"></i>
+                    BW GRUPPE
+                </h3>
+                <p>Professioneller Immobilienankauf in Stuttgart und ganz Deutschland. Über 50 Mitarbeiter, 20 Jahre Erfahrung, bis zu €50 Millionen Ankaufsvolumen.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ankauf</h4>
+                <ul>
+                    <li><a href="#ankauf"><i class="fas fa-chevron-right"></i> Immobilienankauf</a></li>
+                    <li><a href="#prozess"><i class="fas fa-chevron-right"></i> Ankaufsprozess</a></li>
+                    <li><a href="#objekttypen"><i class="fas fa-chevron-right"></i> Objekttypen</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Unternehmen</h4>
+                <ul>
+                    <li><a href="#team"><i class="fas fa-chevron-right"></i> Über uns</a></li>
+                    <li><a href="#team"><i class="fas fa-chevron-right"></i> Team</a></li>
+                    <li><a href="#partner"><i class="fas fa-chevron-right"></i> Partner</a></li>
+                    <li><a href="#kontakt"><i class="fas fa-chevron-right"></i> Kontakt</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="#impressum"><i class="fas fa-chevron-right"></i> Impressum</a></li>
+                    <li><a href="#datenschutz"><i class="fas fa-chevron-right"></i> Datenschutz</a></li>
+                    <li><a href="#agb"><i class="fas fa-chevron-right"></i> AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 BW GRUPPE. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        const video = document.getElementById('heroVideo');
+        const placeholder = document.getElementById('videoPlaceholder');
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!isMobile) {
+            video.addEventListener('loadeddata', function() {
+                placeholder.classList.add('hidden');
+            });
+        } else {
+            placeholder.classList.remove('hidden');
+        }
+
+        video.addEventListener('error', function() {
+            console.log('Video failed to load');
+        });
+
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        if (!isMobile) {
+            heroObserver.observe(document.querySelector('.hero'));
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    if (window.pageYOffset > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.prozess-step, .objekt-card, .team-member, .detail-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
