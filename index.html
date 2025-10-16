@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BW GRUPPE - Exklusive Immobilien in Stuttgart</title>
+    <title>BW GRUPPE - Immobilienankauf in Stuttgart</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
             margin: 0;
@@ -12,23 +13,37 @@
         }
 
         :root {
-            --primary: #0a1628;
-            --secondary: #1a2942;
-            --gold: #d4af37;
-            --gold-light: #f4e4a6;
-            --accent: #c9a961;
-            --dark: #050a14;
-            --light: #f8f9fa;
+            --primary: #0f1419;
+            --secondary: #1a2332;
+            --accent: #5b8fc7;
+            --accent-light: #7ba7d8;
+            --accent-dark: #4a78a8;
+            --silver: #c0c8d4;
+            --dark: #050810;
+            --light: #f5f7fa;
+            --lightest: #fafbfc;
             --gray: #6b7280;
             --white: #ffffff;
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
             color: var(--primary);
             line-height: 1.7;
             overflow-x: hidden;
             background: var(--dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* Navigation */
@@ -37,14 +52,14 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 22, 40, 0.92);
+            background: rgba(15, 20, 25, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(91, 143, 199, 0.15);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         nav.scrolled {
-            background: rgba(10, 22, 40, 0.97);
+            background: rgba(15, 20, 25, 0.98);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
@@ -58,22 +73,10 @@
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 300;
+            font-size: 1.8rem;
+            font-weight: 600;
             color: var(--white);
-            letter-spacing: 8px;
-            font-family: 'Georgia', serif;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold), transparent);
+            letter-spacing: 4px;
         }
 
         .nav-links {
@@ -85,10 +88,10 @@
         .nav-links a {
             text-decoration: none;
             color: var(--white);
-            font-weight: 300;
+            font-weight: 400;
             font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: all 0.4s;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
             position: relative;
             padding: 0.5rem 0;
         }
@@ -99,21 +102,21 @@
             bottom: 0;
             left: 50%;
             width: 0;
-            height: 1px;
-            background: var(--gold);
-            transition: all 0.4s;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s;
             transform: translateX(-50%);
         }
 
         .nav-links a:hover {
-            color: var(--gold);
+            color: var(--accent-light);
         }
 
         .nav-links a:hover::before {
             width: 100%;
         }
 
-        /* Hero Section with Video */
+        /* Hero Section */
         .hero {
             margin-top: 0;
             min-height: 100vh;
@@ -144,6 +147,12 @@
             object-fit: cover;
         }
 
+        @media (max-width: 480px) {
+            .hero-video {
+                display: none;
+            }
+        }
+
         .hero-video-overlay {
             position: absolute;
             top: 0;
@@ -151,32 +160,19 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, 
-                rgba(10, 22, 40, 0.85) 0%, 
-                rgba(10, 22, 40, 0.6) 50%, 
-                rgba(26, 41, 66, 0.75) 100%);
+                rgba(15, 20, 25, 0.90) 0%, 
+                rgba(15, 20, 25, 0.78) 50%, 
+                rgba(26, 35, 50, 0.85) 100%);
             z-index: 1;
         }
 
-        .hero-video-overlay::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
-        }
-
-        /* Video placeholder/poster */
         .hero-video-placeholder {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /*background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--secondary) 100%);*/
-            baclground: url("/video-placeholder.jpg");
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--secondary) 100%);
             transition: opacity 0.5s ease;
         }
 
@@ -193,44 +189,77 @@
             z-index: 2;
         }
 
-        .hero-subtitle {
-            color: var(--gold);
-            font-size: 0.95rem;
-            letter-spacing: 3px;
+        .hero-badge {
+            display: inline-block;
+            padding: 0.7rem 1.8rem;
+            background: rgba(91, 143, 199, 0.12);
+            border: 1px solid rgba(91, 143, 199, 0.3);
+            color: var(--accent-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
+            margin-bottom: 2rem;
             animation: fadeInUp 1s ease;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 {
             font-size: 5rem;
-            font-weight: 300;
+            font-weight: 700;
             color: var(--white);
             margin-bottom: 2rem;
-            line-height: 1.2;
+            line-height: 1.1;
             animation: fadeInUp 1s ease 0.2s both;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            letter-spacing: -1px;
         }
 
-        .hero h1 strong {
-            font-weight: 600;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero h1 .highlight {
+            color: var(--accent-light);
+        }
+
+        .hero-volume {
+            display: inline-flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1.5rem 2.5rem;
+            background: rgba(91, 143, 199, 0.08);
+            border-left: 4px solid var(--accent);
+            margin: 2rem 0;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-volume-icon {
+            width: 50px;
+            height: 50px;
+            color: var(--accent);
+        }
+
+        .hero-volume-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-volume-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-volume-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
         }
 
         .hero p {
             font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.95);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 3rem;
             max-width: 700px;
             animation: fadeInUp 1s ease 0.4s both;
-            line-height: 1.8;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            line-height: 1.7;
         }
 
         .cta-buttons {
@@ -241,61 +270,61 @@
 
         .btn {
             padding: 1.2rem 3rem;
-            border-radius: 0;
             text-decoration: none;
-            font-weight: 300;
+            font-weight: 500;
             font-size: 0.95rem;
-            transition: all 0.4s;
-            display: inline-block;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
             border: none;
             cursor: pointer;
-            letter-spacing: 2px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
             position: relative;
             overflow: hidden;
+            min-height: 50px;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: left 0.5s;
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
         }
 
-        .btn:hover::before {
-            left: 100%;
+        .btn:hover svg {
+            transform: translateX(3px);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--gold), var(--accent));
-            color: var(--dark);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            box-shadow: 0 15px 40px rgba(91, 143, 199, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 50px rgba(91, 143, 199, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold);
+            color: var(--accent-light);
+            border: 2px solid var(--accent);
         }
 
         .btn-secondary:hover {
-            background: var(--gold);
-            color: var(--dark);
+            background: var(--accent);
+            color: var(--white);
         }
 
         /* Section Base */
         section {
             padding: 8rem 3rem;
             position: relative;
+            width: 100%;
+            max-width: 100vw;
         }
 
         .section-dark {
@@ -303,12 +332,17 @@
         }
 
         .section-light {
-            background: linear-gradient(180deg, var(--light) 0%, #ffffff 100%);
+            background: linear-gradient(180deg, var(--lightest) 0%, var(--light) 100%);
+        }
+
+        .section-white {
+            background: var(--white);
         }
 
         .container {
             max-width: 1600px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .section-header {
@@ -316,25 +350,28 @@
             margin-bottom: 5rem;
         }
 
-        .section-subtitle {
-            color: var(--gold);
-            font-size: 0.9rem;
-            letter-spacing: 3px;
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(91, 143, 199, 0.1);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 1rem;
-            font-weight: 300;
+            margin-bottom: 1.5rem;
         }
 
-        .section-dark .section-subtitle {
-            color: var(--gold);
+        .section-dark .section-badge {
+            background: rgba(91, 143, 199, 0.15);
         }
 
         .section-title {
             font-size: 3.5rem;
-            font-weight: 300;
+            font-weight: 700;
             color: var(--primary);
             margin-bottom: 1.5rem;
-            letter-spacing: 1px;
+            letter-spacing: -1px;
         }
 
         .section-dark .section-title {
@@ -346,406 +383,643 @@
             color: var(--gray);
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.9;
+            line-height: 1.8;
         }
 
         .section-dark .section-description {
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Ankauf Section */
+        /* Ankauf Section - Now Light */
         .ankauf {
-            background: var(--primary);
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(180deg, var(--lightest) 0%, var(--white) 100%);
         }
 
-        .ankauf::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.03) 100%);
-        }
-
-        .ankauf-grid {
+        .ankauf-content {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
             margin-top: 4rem;
+            align-items: start;
         }
 
-        .ankauf-feature {
-            background: rgba(255, 255, 255, 0.03);
+        .ankauf-map {
+            background: var(--white);
+            border: 1px solid rgba(91, 143, 199, 0.15);
             padding: 3rem;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.5s;
             position: relative;
-            overflow: hidden;
+            min-height: 500px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
         }
 
-        .ankauf-feature::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 0;
-            background: var(--gold);
-            transition: height 0.5s;
+        .ankauf-map img {
+            width: 100%;
+            height: auto;
         }
 
-        .ankauf-feature:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--gold);
-        }
-
-        .ankauf-feature:hover::before {
-            height: 100%;
-        }
-
-        .ankauf-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            filter: grayscale(0.3);
-        }
-
-        .ankauf-feature h3 {
-            font-size: 1.8rem;
-            color: var(--white);
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        .ankauf-feature p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-        }
-
-        /* Services Grid */
-        .services-grid {
+        .ankauf-details {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .detail-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .detail-card:hover {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .detail-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(91, 143, 199, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .detail-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .detail-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .detail-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .detail-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .detail-list li {
+            padding: 0.6rem 0;
+            color: var(--gray);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .detail-list li svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Ankaufsprozess - White */
+        .prozess {
+            background: var(--white);
+        }
+
+        .prozess-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
             margin-top: 4rem;
         }
 
-        .service-card {
-            background: white;
-            padding: 3rem;
-            transition: all 0.5s;
+        .prozess-step {
+            background: var(--lightest);
+            padding: 3rem 2rem;
+            transition: all 0.4s;
             position: relative;
-            border: 1px solid #e5e7eb;
+            border-top: 3px solid var(--accent);
+            text-align: center;
+            border-radius: 8px;
         }
 
-        .service-card::after {
+        .prozess-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+            background: white;
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(91, 143, 199, 0.3);
+        }
+
+        .step-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 35px;
+            height: 35px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .prozess-step h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .prozess-step p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Referenzen Section */
+        .referenzen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .referenz-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .referenz-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .referenz-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .referenz-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .referenz-image svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .referenz-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .referenz-content {
+            padding: 2rem;
+        }
+
+        .referenz-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .referenz-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .referenz-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .referenz-meta-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+
+        .referenz-description {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .referenz-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .referenz-tag {
+            background: rgba(91, 143, 199, 0.1);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Sanierung Section */
+        .sanierung-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+            align-items: center;
+        }
+
+        .sanierung-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .sanierung-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sanierung-image svg {
+            width: 120px;
+            height: 120px;
+        }
+
+        .sanierung-content h3 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .sanierung-content p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .sanierung-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sanierung-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sanierung-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(91, 143, 199, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .sanierung-feature-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .sanierung-feature span {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* Objekttypen - Dark */
+        .objekttypen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .objekt-card {
+            aspect-ratio: 4/3;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(91, 143, 199, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .objekt-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--accent));
+            background: var(--accent);
             transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-            border-color: var(--gold);
-        }
-
-        .service-card:hover::after {
-            transform: scaleX(1);
-        }
-
-        .service-number {
-            font-size: 4rem;
-            font-weight: 300;
-            color: var(--gold);
-            opacity: 0.3;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        /* Objekttypen */
-        .objekttypen-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .objekt-card {
-            aspect-ratio: 1;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: all 0.5s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .objekt-card::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: all 0.5s;
-        }
-
-        .objekt-card:hover::before {
-            width: 300%;
-            height: 300%;
+            transition: transform 0.4s;
         }
 
         .objekt-card:hover {
-            border-color: var(--gold);
-            transform: scale(1.05);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .objekt-card:hover::before {
+            transform: scaleX(1);
         }
 
         .objekt-icon {
-            font-size: 4rem;
+            width: 80px;
+            height: 80px;
+            background: rgba(91, 143, 199, 0.15);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
             margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
+        }
+
+        .objekt-icon svg {
+            width: 40px;
+            height: 40px;
         }
 
         .objekt-card h3 {
             font-size: 1.3rem;
             color: var(--white);
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
+            font-weight: 500;
         }
 
-        /* Referenzen */
-        .referenzen {
-            background: var(--light);
+        /* Team Section - Light */
+        .team {
+            background: linear-gradient(180deg, var(--lightest) 0%, var(--light) 100%);
         }
 
-        .referenzen-grid {
+        .team-stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .referenz-card {
-            background: white;
-            overflow: hidden;
-            transition: all 0.5s;
-            border: 1px solid #e5e7eb;
-        }
-
-        .referenz-image {
-            height: 280px;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .referenz-image::after {
-            content: '🏢';
-            position: absolute;
-            font-size: 8rem;
-            bottom: -1rem;
-            right: -1rem;
-            opacity: 0.2;
-        }
-
-        .referenz-content {
-            padding: 2.5rem;
-        }
-
-        .referenz-card h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-weight: 400;
-        }
-
-        .referenz-location {
-            color: var(--gold);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .referenz-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .referenz-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-            margin-top: 4rem;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            color: var(--white);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .about-text p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            line-height: 1.9;
-        }
-
-        .about-features {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 2px solid var(--gold);
-            transition: all 0.3s;
-        }
-
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(10px);
-        }
-
-        .feature-check {
-            width: 40px;
-            height: 40px;
-            background: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark);
-            flex-shrink: 0;
-            font-weight: bold;
-        }
-
-        .feature-item span {
-            color: var(--white);
-            font-size: 1.05rem;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
+            margin-bottom: 5rem;
         }
 
         .stat-card {
             text-align: center;
             padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: white;
+            border-top: 3px solid var(--accent);
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-icon {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon svg {
+            width: 48px;
+            height: 48px;
         }
 
         .stat-number {
-            font-size: 4rem;
-            font-weight: 300;
-            color: var(--gold);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
             font-size: 0.95rem;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        /* Contact Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            overflow: hidden;
+            transition: all 0.3s;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .team-photo svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .team-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Partner Section - Dark */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .partner-logo {
+            aspect-ratio: 16/9;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(91, 143, 199, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            padding: 2rem;
+            border-radius: 12px;
+            gap: 1rem;
+        }
+
+        .partner-logo:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .partner-icon {
+            color: var(--accent);
+        }
+
+        .partner-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .partner-placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* Contact Section - Dark */
         .contact {
             background: var(--dark);
-            position: relative;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: 5rem;
             margin-top: 4rem;
         }
 
         .contact-info {
             display: grid;
-            gap: 3rem;
+            gap: 2.5rem;
         }
 
         .contact-item {
             display: flex;
             align-items: start;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
-        .contact-item-icon {
+        .contact-icon {
             width: 60px;
             height: 60px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--gold);
+            background: rgba(91, 143, 199, 0.12);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gold);
-            font-size: 1.5rem;
+            color: var(--accent);
             flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 28px;
+            height: 28px;
         }
 
         .contact-item-content h3 {
             color: var(--white);
             margin-bottom: 0.5rem;
-            font-weight: 300;
-            font-size: 1.3rem;
+            font-weight: 600;
+            font-size: 1.2rem;
         }
 
         .contact-item-content p {
@@ -754,61 +1028,39 @@
         }
 
         .contact-item-content a {
-            color: var(--gold);
+            color: var(--accent-light);
             text-decoration: none;
             transition: all 0.3s;
         }
 
         .contact-item-content a:hover {
-            color: var(--gold-light);
+            color: var(--white);
         }
 
         .contact-cta {
-            background: linear-gradient(135deg, var(--gold), var(--accent));
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             padding: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .contact-cta-content {
-            position: relative;
-            z-index: 1;
+            border-radius: 12px;
         }
 
         .contact-cta h3 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            font-weight: 300;
-            color: var(--dark);
+            font-weight: 700;
+            color: var(--white);
         }
 
         .contact-cta p {
-            margin-bottom: 2rem;
-            color: var(--dark);
-            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            color: var(--white);
+            opacity: 0.95;
             font-size: 1.1rem;
         }
 
         /* Footer */
         footer {
             background: var(--dark);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-top: 1px solid rgba(91, 143, 199, 0.2);
             padding: 4rem 3rem 2rem;
         }
 
@@ -822,11 +1074,11 @@
         }
 
         .footer-brand h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--white);
             margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: 6px;
+            font-weight: 600;
+            letter-spacing: 3px;
         }
 
         .footer-brand p {
@@ -835,12 +1087,12 @@
         }
 
         .footer-links h4 {
-            color: var(--gold);
+            color: var(--accent);
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-weight: 300;
+            font-weight: 600;
         }
 
         .footer-links ul {
@@ -856,7 +1108,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--gold);
+            color: var(--accent);
             transform: translateX(5px);
         }
 
@@ -882,26 +1134,132 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .nav-container {
+                padding: 1.2rem 2rem;
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .hero h1 {
-                font-size: 3rem;
+            section {
+                padding: 5rem 2rem;
             }
 
-            .services-grid,
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .ankauf-content,
+            .sanierung-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .prozess-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .objekttypen-grid,
             .referenzen-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-stats,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partner-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-content {
                 grid-template-columns: 1fr;
             }
 
-            .ankauf-grid,
-            .about-content,
-            .contact-content,
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .sanierung-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-content {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-volume {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .prozess-grid,
+            .objekttypen-grid,
+            .referenzen-grid,
+            .team-stats,
+            .team-grid,
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
             }
         }
     </style>
@@ -914,16 +1272,16 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#ankauf">Ankauf</a></li>
-                <li><a href="#leistungen">Leistungen</a></li>
-                <li><a href="#objekttypen">Objekttypen</a></li>
+                <li><a href="#prozess">Prozess</a></li>
+                <li><a href="#sanierung">Sanierung</a></li>
                 <li><a href="#referenzen">Referenzen</a></li>
-                <li><a href="#ueber-uns">Über uns</a></li>
+                <li><a href="#team">Team</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section with Video Background -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-video-container">
             <div class="hero-video-placeholder" id="videoPlaceholder"></div>
@@ -942,282 +1300,495 @@
         </div>
         
         <div class="hero-content">
-            <div class="hero-subtitle">Premium Immobilien</div>
-            <h1>Ihr Stuttgarter Spezialist<br>für <strong>exklusive Immobilien</strong></h1>
-            <p>Professioneller Ankauf, Verwaltung und Verkauf von erstklassigen Immobilien in Stuttgart und ganz Deutschland. Mit Expertise, Diskretion und Weitblick.</p>
+            <div class="hero-badge">Professioneller Immobilienankauf</div>
+            <h1>Wir kaufen Ihre <span class="highlight">Immobilie</span><br>in ganz Deutschland</h1>
+            
+            <div class="hero-volume">
+                <i data-lucide="trending-up" class="hero-volume-icon"></i>
+                <div class="hero-volume-content">
+                    <div class="hero-volume-label">Ankaufsvolumen bis zu</div>
+                    <div class="hero-volume-amount">€ 50 Millionen</div>
+                </div>
+            </div>
+            
+            <p>Schneller, unkomplizierter Ankauf von Wohn- und Gewerbeimmobilien. Fair, diskret und professionell.</p>
+            
             <div class="cta-buttons">
-                <a href="#kontakt" class="btn btn-primary">Beratung vereinbaren</a>
-                <a href="#ankauf" class="btn btn-secondary">Mehr erfahren</a>
+                <a href="#kontakt" class="btn btn-primary">
+                    Immobilie verkaufen
+                    <i data-lucide="arrow-right"></i>
+                </a>
+                <a href="#ankauf" class="btn btn-secondary">
+                    Mehr erfahren
+                    <i data-lucide="info"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Ankauf Section -->
-    <section class="ankauf section-dark" id="ankauf">
+    <!-- Ankauf Section - Now Light -->
+    <section class="ankauf" id="ankauf">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Unsere Expertise</div>
+                <div class="section-badge">Unsere Expertise</div>
                 <h2 class="section-title">Immobilienankauf</h2>
-                <p class="section-description">Wir kaufen Immobilien mit Potenzial in ganz Deutschland, mit besonderem Fokus auf erstklassige Lagen in A-, B- und C-Städten. Profitieren Sie von unserer langjährigen Erfahrung und unserem umfangreichen Netzwerk.</p>
+                <p class="section-description">Wir kaufen Immobilien mit Potenzial in ganz Deutschland. Fokus auf A-, B- und C-Städte mit hohem Entwicklungspotenzial.</p>
             </div>
             
-            <div class="ankauf-grid">
-                <div class="ankauf-feature">
-                    <div class="ankauf-icon">🏛️</div>
-                    <h3>Sanierungsobjekte</h3>
-                    <p>Gerne sanierungsbedürftig mit Entwicklungspotenzial. Wir erkennen den Wert auch bei renovierungsbedürftigen Immobilien und bieten faire Konditionen.</p>
+            <div class="ankauf-content">
+                <div class="ankauf-map">
+                    <img src="/BW-REAL-ESTATE-Ankaufsprofil-Standort-BW.png" alt="Ankaufsregionen">
                 </div>
+                
+                <div class="ankauf-details">
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <div class="detail-icon">
+                                <i data-lucide="home"></i>
+                            </div>
+                            <h3>Was wir ankaufen</h3>
+                        </div>
+                        <ul class="detail-list">
+                            <li><i data-lucide="check-circle"></i> Mehrfamilienhäuser (ab 5 Einheiten)</li>
+                            <li><i data-lucide="check-circle"></i> Wohn- und Geschäftshäuser</li>
+                            <li><i data-lucide="check-circle"></i> Gewerbeimmobilien</li>
+                            <li><i data-lucide="check-circle"></i> Portfolios & Immobilienpakete</li>
+                            <li><i data-lucide="check-circle"></i> Sanierungsobjekte mit Potenzial</li>
+                        </ul>
+                    </div>
 
-                <div class="ankauf-feature">
-                    <div class="ankauf-icon">📊</div>
-                    <h3>Untervermietete Objekte</h3>
-                    <p>Schlecht vermietete Immobilien mit hohem Leerstand. Durch professionelles Management erschließen wir das volle Potenzial Ihrer Immobilie.</p>
-                </div>
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <div class="detail-icon">
+                                <i data-lucide="euro"></i>
+                            </div>
+                            <h3>Ankaufsvolumen</h3>
+                        </div>
+                        <p><strong>Einzelobjekte:</strong> ab € 500.000<br>
+                        <strong>Portfolios:</strong> bis € 50 Millionen<br>
+                        <strong>Eigenkapital:</strong> Volle Kaufkraft</p>
+                    </div>
 
-                <div class="ankauf-feature">
-                    <div class="ankauf-icon">🏗️</div>
-                    <h3>Baureserven</h3>
-                    <p>Objekte mit Entwicklungspotenzial und Baureserven. Wir erkennen Möglichkeiten, die andere übersehen, und nutzen diese optimal.</p>
-                </div>
-
-                <div class="ankauf-feature">
-                    <div class="ankauf-icon">🌆</div>
-                    <h3>Neubauprojekte</h3>
-                    <p>Projektentwicklung und Realisierung von hochwertigen Neubauprojekten in erstklassigen Lagen mit maximalem Wertsteigerungspotenzial.</p>
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <div class="detail-icon">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <h3>Fokusregionen</h3>
+                        </div>
+                        <ul class="detail-list">
+                            <li><i data-lucide="map"></i> Baden-Württemberg (Stuttgart, Karlsruhe, Freiburg)</li>
+                            <li><i data-lucide="map"></i> Bayern (München, Nürnberg, Augsburg)</li>
+                            <li><i data-lucide="map"></i> Nordrhein-Westfalen (Köln, Düsseldorf, Dortmund)</li>
+                            <li><i data-lucide="map"></i> Hessen (Frankfurt, Wiesbaden)</li>
+                            <li><i data-lucide="map"></i> Weitere A-, B- und C-Städte deutschlandweit</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services section-light" id="leistungen">
+    <!-- Ankaufsprozess - White Background -->
+    <section class="prozess section-white" id="prozess">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Unser Service</div>
-                <h2 class="section-title">Umfassende Dienstleistungen</h2>
-                <p class="section-description">Von der ersten Beratung bis zur erfolgreichen Transaktion – wir begleiten Sie mit Expertise und persönlichem Engagement durch jeden Schritt.</p>
+                <div class="section-badge">So einfach geht's</div>
+                <h2 class="section-title">Unser Ankaufsprozess</h2>
+                <p class="section-description">In nur 4 Schritten zur erfolgreichen Transaktion – schnell, transparent und unkompliziert.</p>
             </div>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-number">01</div>
-                    <h3>Ankauf</h3>
-                    <p>Schneller und unkomplizierter Ankauf Ihrer Immobilie zu marktgerechten Preisen. Diskrete Abwicklung und faire Bewertung durch unsere Experten.</p>
+            <div class="prozess-grid">
+                <div class="prozess-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i data-lucide="phone"></i>
+                    </div>
+                    <h3>Kontaktaufnahme</h3>
+                    <p>Sie nehmen Kontakt zu uns auf und schildern uns Ihr Objekt. Erste Einschätzung erfolgt innerhalb von 24 Stunden.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-number">02</div>
-                    <h3>Verwaltung</h3>
-                    <p>Professionelle Immobilienverwaltung mit Full-Service. Von der Mieterbetreuung bis zur technischen Verwaltung – alles aus einer Hand.</p>
+                <div class="prozess-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i data-lucide="search"></i>
+                    </div>
+                    <h3>Objektprüfung</h3>
+                    <p>Wir besichtigen Ihre Immobilie vor Ort und führen eine professionelle Bewertung durch.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-number">03</div>
-                    <h3>Verkauf</h3>
-                    <p>Optimale Vermarktung Ihrer Immobilie durch gezieltes Marketing und unser weitreichendes Netzwerk an kaufkräftigen Interessenten.</p>
+                <div class="prozess-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <h3>Angebot</h3>
+                    <p>Sie erhalten ein verbindliches Kaufangebot zu fairen Konditionen – transparent und nachvollziehbar.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-number">04</div>
-                    <h3>Bewertung</h3>
-                    <p>Fundierte Immobilienbewertung basierend auf aktuellen Marktdaten und jahrelanger Erfahrung im Stuttgarter Immobilienmarkt.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-number">05</div>
-                    <h3>Beratung</h3>
-                    <p>Umfassende Beratung zu allen Aspekten Ihrer Immobilie – von der Investitionsstrategie bis zur steuerlichen Optimierung.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-number">06</div>
-                    <h3>Entwicklung</h3>
-                    <p>Projektentwicklung mit Weitblick. Wir realisieren Projekte, die Standards setzen und nachhaltige Werte schaffen.</p>
+                <div class="prozess-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i data-lucide="handshake"></i>
+                    </div>
+                    <h3>Abwicklung</h3>
+                    <p>Schnelle notarielle Beurkundung und zügige Kaufpreiszahlung. Auf Wunsch übernehmen wir die Verwaltung.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Objekttypen Section -->
-    <section class="objekttypen section-dark" id="objekttypen">
+    <!-- Sanierung Section - Dark -->
+    <section class="section-dark" id="sanierung">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Unser Portfolio</div>
-                <h2 class="section-title">Objekttypen</h2>
-                <p class="section-description">Wir sind spezialisiert auf hochwertige Immobilien aller Kategorien in erstklassigen Lagen.</p>
+                <div class="section-badge">Unsere Leistungen</div>
+                <h2 class="section-title">Full-Service Sanierung</h2>
+                <p class="section-description">Von Fenstern und Türen über Innenausbau bis hin zu kompletten Sanierungen – alle Gewerke aus einer Hand.</p>
             </div>
             
-            <div class="objekttypen-grid">
-                <div class="objekt-card">
-                    <div class="objekt-icon">🏡</div>
-                    <h3>Einfamilienhäuser</h3>
+            <div class="sanierung-showcase">
+                <div class="sanierung-image">
+                    <img src="/Sanierung_Stuttgart-scaled-1-1500x840.jpg" alt="Innenausbau">
                 </div>
-
-                <div class="objekt-card">
-                    <div class="objekt-icon">🏢</div>
-                    <h3>Mehrfamilienhäuser</h3>
-                </div>
-
-                <div class="objekt-card">
-                    <div class="objekt-icon">🏘️</div>
-                    <h3>Wohnungen</h3>
-                </div>
-
-                <div class="objekt-card">
-                    <div class="objekt-icon">🏭</div>
-                    <h3>Gewerbeimmobilien</h3>
-                </div>
-
-                <div class="objekt-card">
-                    <div class="objekt-icon">📐</div>
-                    <h3>Grundstücke</h3>
-                </div>
-
-                <div class="objekt-card">
-                    <div class="objekt-icon">🏬</div>
-                    <h3>Wohn- & Geschäftshäuser</h3>
+                <div class="sanierung-content">
+                    <h3>Ihr Partner für alle Gewerke der Sanierung</h3>
+                    <p>Als Full-Service Dienstleister bieten wir Ihnen alle Gewerke für Ihre Sanierung. Ein Ansprechpartner, schnelle Bearbeitung und höchste Qualität – von der Planung bis zur Fertigstellung.</p>
+                    
+                    <div class="sanierung-features">
+                        <div class="sanierung-feature">
+                            <div class="sanierung-feature-icon">
+                                <i data-lucide="door-open"></i>
+                            </div>
+                            <span>Fenster & Türen</span>
+                        </div>
+                        <div class="sanierung-feature">
+                            <div class="sanierung-feature-icon">
+                                <i data-lucide="layers"></i>
+                            </div>
+                            <span>Innenausbau</span>
+                        </div>
+                        <div class="sanierung-feature">
+                            <div class="sanierung-feature-icon">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <span>Elektrik</span>
+                        </div>
+                        <div class="sanierung-feature">
+                            <div class="sanierung-feature-icon">
+                                <i data-lucide="droplet"></i>
+                            </div>
+                            <span>Sanitär & Heizung</span>
+                        </div>
+                        <div class="sanierung-feature">
+                            <div class="sanierung-feature-icon">
+                                <i data-lucide="home"></i>
+                            </div>
+                            <span>Dach & Fassade</span>
+                        </div>
+                        <div class="sanierung-feature">
+                            <div class="sanierung-feature-icon">
+                                <i data-lucide="paint-bucket"></i>
+                            </div>
+                            <span>Maler & Lackierer</span>
+                        </div>
+                    </div>
+                    
+                    <a href="sanierung.html" class="btn btn-primary">
+                        Mehr über Sanierung
+                        <i data-lucide="arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Referenzen Section -->
-    <section class="referenzen section-light" id="referenzen">
+    <!-- Referenzen Section - Light -->
+    <section class="section-light" id="referenzen">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Erfolge</div>
-                <h2 class="section-title">Ausgewählte Referenzen</h2>
-                <p class="section-description">Ein Auszug unserer erfolgreich realisierten Projekte im Raum Stuttgart und Umgebung.</p>
+                <div class="section-badge">Unsere Projekte</div>
+                <h2 class="section-title">Aktuelle Objekte & Referenzen</h2>
+                <p class="section-description">Einblick in unsere erfolgreichen Immobilienprojekte – von Neubauten bis zu sanierten Bestandsobjekten.</p>
             </div>
             
             <div class="referenzen-grid">
                 <div class="referenz-card">
-                    <div class="referenz-image"></div>
+                    <div class="referenz-image">
+                        <img src="/Albrecht-Duerer-Weg-scaled-1-1030x685.jpg" alt="Innenausbau">
+                        <div class="referenz-badge">Verkauft</div>
+                    </div>
                     <div class="referenz-content">
-                        <h3>Mehrfamilienhaus</h3>
-                        <div class="referenz-location">Stuttgart</div>
-                        <p>Vollständige Sanierung eines Mehrfamilienhauses in zentraler Stuttgarter Lage mit anschließender Neuvermietung.</p>
+                        <h3>Mehrfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <div class="referenz-meta-item">
+                                <i data-lucide="map-pin"></i>
+                                <span>Stuttgart</span>
+                            </div>
+                            <div class="referenz-meta-item">
+                                <i data-lucide="home"></i>
+                                <span>12 Einheiten</span>
+                            </div>
+                        </div>
+                        <p class="referenz-description">Vollsaniertes Mehrfamilienhaus in zentraler Lage mit hochwertigem Ausbau und modernen Energiestandards.</p>
+                        <div class="referenz-tags">
+                            <span class="referenz-tag">Sanierung</span>
+                            <span class="referenz-tag">Wohnen</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="referenz-card">
-                    <div class="referenz-image"></div>
+                    <div class="referenz-image">
+                        <img src="/Hauptstaetter-Str-106-Stuttgart-1030x685.jpg" alt="Innenausbau">
+                        <div class="referenz-badge">Altbau</div>
+                    </div>
                     <div class="referenz-content">
-                        <h3>Wohn- und Geschäftshaus</h3>
-                        <div class="referenz-location">Kornwestheim</div>
-                        <p>Entwicklung eines gemischt genutzten Objekts mit Einzelhandel im Erdgeschoss und hochwertigen Wohneinheiten.</p>
+                        <h3>Wohn- und Geschäftshaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <div class="referenz-meta-item">
+                                <i data-lucide="map-pin"></i>
+                                <span>Stuttgart</span>
+                            </div>
+                            <div class="referenz-meta-item">
+                                <i data-lucide="layers"></i>
+                                <span>Mixed-Use</span>
+                            </div>
+                        </div>
+                        <p class="referenz-description">Zentrales Altbaugebäude mit Gewerbe im Erdgeschoss und hochwertigen Wohneinheiten in den Obergeschossen.</p>
+                        <div class="referenz-tags">
+                            <span class="referenz-tag">Altbau</span>
+                            <span class="referenz-tag">Gewerbe</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="referenz-card">
-                    <div class="referenz-image"></div>
-                    <div class="referenz-content">
-                        <h3>Mehrfamilienhaus</h3>
-                        <div class="referenz-location">Ludwigsburg</div>
-                        <p>Ankauf und Modernisierung eines Mehrfamilienhauses mit optimaler Neupositionierung am Markt.</p>
+                    <div class="referenz-image">
+                        <img src="/Eichenweg-1-Kornwestheim-scaled-1-1030x685.jpg" alt="Innenausbau">
+                        <div class="referenz-badge">In Entwicklung</div>
                     </div>
-                </div>
-
-                <div class="referenz-card">
-                    <div class="referenz-image"></div>
                     <div class="referenz-content">
-                        <h3>Mehrfamilienhaus</h3>
-                        <div class="referenz-location">Fellbach</div>
-                        <p>Erfolgreiche Revitalisierung eines Bestandsobjekts mit Steigerung der Vermietungsquote auf 100%.</p>
-                    </div>
-                </div>
-
-                <div class="referenz-card">
-                    <div class="referenz-image"></div>
-                    <div class="referenz-content">
-                        <h3>Mehrfamilienhaus</h3>
-                        <div class="referenz-location">Ditzingen</div>
-                        <p>Komplettmodernisierung und Neuausrichtung eines Wohnobjekts in gefragter Wohnlage.</p>
-                    </div>
-                </div>
-
-                <div class="referenz-card">
-                    <div class="referenz-image"></div>
-                    <div class="referenz-content">
-                        <h3>Fußballcenter</h3>
-                        <div class="referenz-location">Kornwestheim</div>
-                        <p>Entwicklung und Realisierung eines modernen Sport- und Freizeitzentrums mit Gastronomiebereich.</p>
+                        <h3>Fußballcenter Kornwestheim</h3>
+                        <div class="referenz-meta">
+                            <div class="referenz-meta-item">
+                                <i data-lucide="map-pin"></i>
+                                <span>Kornwestheim</span>
+                            </div>
+                            <div class="referenz-meta-item">
+                                <i data-lucide="square"></i>
+                                <span>3.500 m²</span>
+                            </div>
+                        </div>
+                        <p class="referenz-description">Entwicklung eines modernen Fußballcenters mit hochwertiger Ausstattung und optimaler Verkehrsanbindung.</p>
+                        <div class="referenz-tags">
+                            <span class="referenz-tag">Gewerbe</span>
+                            <span class="referenz-tag">Portfolio</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about section-dark" id="ueber-uns">
+    <!-- Objekttypen Section - Dark -->
+    <section class="objekttypen section-dark" id="objekttypen">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Über uns</div>
-                <h2 class="section-title">BW GRUPPE</h2>
-                <p class="section-description">Seit über zwei Jahrzehnten Ihr vertrauensvoller Partner für exklusive Immobiliengeschäfte.</p>
+                <div class="section-badge">Unser Portfolio</div>
+                <h2 class="section-title">Objekttypen</h2>
+                <p class="section-description">Wir kaufen verschiedenste Immobilientypen – von Wohnimmobilien bis zu Gewerbe und Portfolios.</p>
             </div>
             
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Expertise, die überzeugt</h3>
-                    <p>Als etablierter Immobilienspezialist in Stuttgart verbinden wir tiefgreifende Marktkenntnisse mit persönlichem Service auf höchstem Niveau. Unser Fokus liegt auf dem Raum Stuttgart und erstklassigen Städten in ganz Deutschland.</p>
-                    <p>Wir verstehen Immobilien als langfristige Investitionen und legen besonderen Wert auf nachhaltigen Werterhalt und Wertsteigerung. Diskretion, Professionalität und Vertrauen sind die Grundpfeiler unserer Arbeit.</p>
-                    
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <div class="feature-check">✓</div>
-                            <span>Über 20 Jahre Markterfahrung</span>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-check">✓</div>
-                            <span>Deutschlandweites Netzwerk</span>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-check">✓</div>
-                            <span>Diskrete persönliche Betreuung</span>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-check">✓</div>
-                            <span>Faire und transparente Prozesse</span>
-                        </div>
+            <div class="objekttypen-grid">
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i data-lucide="building-2"></i>
+                    </div>
+                    <h3>Mehrfamilienhäuser</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i data-lucide="store"></i>
+                    </div>
+                    <h3>Wohn- & Geschäftshäuser</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i data-lucide="warehouse"></i>
+                    </div>
+                    <h3>Gewerbeimmobilien</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i data-lucide="hammer"></i>
+                    </div>
+                    <h3>Sanierungsobjekte</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i data-lucide="layers"></i>
+                    </div>
+                    <h3>Portfolios</h3>
+                </div>
+
+                <div class="objekt-card">
+                    <div class="objekt-icon">
+                        <i data-lucide="square-dashed"></i>
+                    </div>
+                    <h3>Grundstücke</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - Light -->
+    <section class="team section-light" id="team">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Über uns</div>
+                <h2 class="section-title">Unser Team</h2>
+                <p class="section-description">Mit über 50 Mitarbeitern sind wir Ihr verlässlicher Partner für professionellen Immobilienankauf.</p>
+            </div>
+            
+            <div class="team-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Mitarbeiter</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="calendar"></i>
+                    </div>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Jahre Erfahrung</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Transaktionen</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="euro"></i>
+                    </div>
+                    <div class="stat-number">€50M</div>
+                    <div class="stat-label">Ankaufsvolumen</div>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Max Mustermann</div>
+                        <div class="team-role">Geschäftsführer</div>
                     </div>
                 </div>
-                
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">20+</div>
-                        <div class="stat-label">Jahre Erfahrung</div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Transaktionen</div>
+                    <div class="team-info">
+                        <div class="team-name">Anna Schmidt</div>
+                        <div class="team-role">Abteilungsleitung Ankauf</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Kundenzufriedenheit</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Erreichbarkeit</div>
+                    <div class="team-info">
+                        <div class="team-name">Peter Müller</div>
+                        <div class="team-role">Portfolio Manager</div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Sarah Becker</div>
+                        <div class="team-role">Objektmanagement</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Partner Section - Dark -->
+    <section class="partner section-dark" id="partner">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Netzwerk</div>
+                <h2 class="section-title">Unsere Partner</h2>
+                <p class="section-description">Starke Partnerschaften mit führenden Banken, Dienstleistern und Institutionen.</p>
+            </div>
+            
+            <div class="partner-grid">
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i data-lucide="landmark"></i>
+                    </div>
+                    <div class="partner-placeholder">Bank Partner</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <div class="partner-placeholder">Versicherung</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i data-lucide="factory"></i>
+                    </div>
+                    <div class="partner-placeholder">Rohstoffhändler</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i data-lucide="calculator"></i>
+                    </div>
+                    <div class="partner-placeholder">Steuerberatung</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i data-lucide="scale"></i>
+                    </div>
+                    <div class="partner-placeholder">Rechtsberatung</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Dark -->
     <section class="contact section-dark" id="kontakt">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Kontakt</div>
-                <h2 class="section-title">Nehmen Sie Kontakt auf</h2>
-                <p class="section-description">Wir freuen uns auf Ihre Anfrage und beraten Sie gerne persönlich zu Ihrem Immobilienvorhaben.</p>
+                <div class="section-badge">Kontakt</div>
+                <h2 class="section-title">Verkaufen Sie uns Ihre Immobilie</h2>
+                <p class="section-description">Nehmen Sie Kontakt auf und erhalten Sie ein unverbindliches Angebot innerhalb von 24 Stunden.</p>
             </div>
             
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-icon">
+                            <i data-lucide="map-pin"></i>
+                        </div>
                         <div class="contact-item-content">
                             <h3>Adresse</h3>
                             <p>Withauweg 3<br>70439 Stuttgart<br>Deutschland</p>
@@ -1225,7 +1796,9 @@
                     </div>
 
                     <div class="contact-item">
-                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-icon">
+                            <i data-lucide="phone"></i>
+                        </div>
                         <div class="contact-item-content">
                             <h3>Telefon</h3>
                             <p><a href="tel:+4971162005980">+49 711 620 059 80</a></p>
@@ -1233,7 +1806,9 @@
                     </div>
 
                     <div class="contact-item">
-                        <div class="contact-item-icon">✉️</div>
+                        <div class="contact-icon">
+                            <i data-lucide="mail"></i>
+                        </div>
                         <div class="contact-item-content">
                             <h3>E-Mail</h3>
                             <p><a href="mailto:info@bwgruppe.com">info@bwgruppe.com</a></p>
@@ -1241,7 +1816,9 @@
                     </div>
 
                     <div class="contact-item">
-                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-icon">
+                            <i data-lucide="clock"></i>
+                        </div>
                         <div class="contact-item-content">
                             <h3>Öffnungszeiten</h3>
                             <p>Montag - Freitag: 9:00 - 18:00 Uhr<br>Termine nach Vereinbarung</p>
@@ -1250,11 +1827,12 @@
                 </div>
 
                 <div class="contact-cta">
-                    <div class="contact-cta-content">
-                        <h3>Bereit für Ihr Projekt?</h3>
-                        <p>Kontaktieren Sie uns noch heute für eine unverbindliche Beratung und professionelle Bewertung Ihrer Immobilie. Diskret, kompetent, zuverlässig.</p>
-                        <a href="tel:+4971162005980" class="btn btn-primary" style="background: var(--dark); color: var(--gold); border: 1px solid var(--dark);">Jetzt Termin vereinbaren</a>
-                    </div>
+                    <h3>Immobilie bewerten lassen?</h3>
+                    <p>Kontaktieren Sie uns für eine kostenlose Erstbewertung Ihrer Immobilie. Diskret, schnell und unverbindlich.</p>
+                    <a href="tel:+4971162005980" class="btn btn-primary" style="background: white; color: var(--accent);">
+                        Jetzt anrufen
+                        <i data-lucide="phone"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1265,24 +1843,25 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <h3>BW GRUPPE</h3>
-                <p>Ihr Stuttgarter Spezialist für exklusive Immobilien. Vertrauen, Expertise und Diskretion seit über 20 Jahren.</p>
+                <p>Professioneller Immobilienankauf in Stuttgart und ganz Deutschland. Über 50 Mitarbeiter, 20 Jahre Erfahrung, bis zu €50 Millionen Ankaufsvolumen.</p>
             </div>
             
             <div class="footer-links">
-                <h4>Leistungen</h4>
+                <h4>Ankauf</h4>
                 <ul>
-                    <li><a href="#ankauf">Ankauf</a></li>
-                    <li><a href="#leistungen">Verwaltung</a></li>
-                    <li><a href="#leistungen">Verkauf</a></li>
-                    <li><a href="#leistungen">Beratung</a></li>
+                    <li><a href="#ankauf">Immobilienankauf</a></li>
+                    <li><a href="#prozess">Ankaufsprozess</a></li>
+                    <li><a href="#objekttypen">Objekttypen</a></li>
+                    <li><a href="sanierung.html">Sanierung</a></li>
                 </ul>
             </div>
             
             <div class="footer-links">
                 <h4>Unternehmen</h4>
                 <ul>
-                    <li><a href="#ueber-uns">Über uns</a></li>
-                    <li><a href="#referenzen">Referenzen</a></li>
+                    <li><a href="#team">Über uns</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#partner">Partner</a></li>
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </div>
@@ -1303,21 +1882,39 @@
     </footer>
 
     <script>
-        // Video loading management
+        // Initialize Lucide icons
+        lucide.createIcons();
+
         const video = document.getElementById('heroVideo');
         const placeholder = document.getElementById('videoPlaceholder');
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!isMobile) {
+            video.addEventListener('loadeddata', function() {
+                placeholder.classList.add('hidden');
+            });
+        } else {
+            placeholder.classList.remove('hidden');
+        }
 
-        // Hide placeholder when video can play
-        video.addEventListener('loadeddata', function() {
-            placeholder.classList.add('hidden');
-        });
-
-        // Fallback if video doesn't load
         video.addEventListener('error', function() {
-            console.log('Video failed to load, keeping placeholder visible');
+            console.log('Video failed to load');
         });
 
-        // Smooth scrolling
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        if (!isMobile) {
+            heroObserver.observe(document.querySelector('.hero'));
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1331,20 +1928,26 @@
             });
         });
 
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
+        let ticking = false;
+        
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    if (window.pageYOffset > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
 
-        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1356,7 +1959,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card, .objekt-card, .referenz-card, .ankauf-feature').forEach(el => {
+        document.querySelectorAll('.prozess-step, .objekt-card, .team-member, .detail-card, .stat-card, .referenz-card, .sanierung-showcase').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(40px)';
             el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';

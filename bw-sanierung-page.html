@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BW GRUPPE - Sanierung in Stuttgart & Umgebung</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f1419;
+            --secondary: #1a2332;
+            --accent: #5b8fc7;
+            --accent-light: #7ba7d8;
+            --accent-dark: #4a78a8;
+            --silver: #c0c8d4;
+            --dark: #050810;
+            --light: #f5f7fa;
+            --lightest: #fafbfc;
+            --gray: #6b7280;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(91, 143, 199, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(15, 20, 25, 0.98);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 4px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" x="50" y="50" fill="rgba(91,143,199,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.7rem 1.8rem;
+            background: rgba(91, 143, 199, 0.12);
+            border: 1px solid rgba(91, 143, 199, 0.3);
+            color: var(--accent-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s both;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-light);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            animation: fadeInUp 1s ease 0.4s both;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            min-height: 50px;
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover svg {
+            transform: translateX(3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            box-shadow: 0 15px 40px rgba(91, 143, 199, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(91, 143, 199, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-light);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Section Base */
+        section {
+            padding: 8rem 3rem;
+            position: relative;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        .section-dark {
+            background: var(--primary);
+        }
+
+        .section-light {
+            background: linear-gradient(180deg, var(--lightest) 0%, var(--light) 100%);
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(91, 143, 199, 0.1);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-dark .section-badge {
+            background: rgba(91, 143, 199, 0.15);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .section-dark .section-title {
+            color: var(--white);
+        }
+
+        .section-description {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section-dark .section-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Gewerke Grid */
+        .gewerke-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .gewerk-card {
+            background: var(--white);
+            border: 1px solid rgba(91, 143, 199, 0.15);
+            padding: 3rem 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .gewerk-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .gewerk-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .gewerk-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .gewerk-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(91, 143, 199, 0.3);
+        }
+
+        .gewerk-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .gewerk-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .gewerk-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .gewerk-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .gewerk-list li {
+            padding: 0.6rem 0;
+            color: var(--gray);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .gewerk-list li svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Detail Sections */
+        .detail-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+            align-items: center;
+        }
+
+        .detail-section.reverse {
+            direction: rtl;
+        }
+
+        .detail-section.reverse > * {
+            direction: ltr;
+        }
+
+        .detail-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-image svg {
+            width: 120px;
+            height: 120px;
+        }
+
+        .detail-content h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .detail-content p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .detail-features {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--lightest);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(91, 143, 199, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        /* Vorteile Section */
+        .vorteile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .vorteil-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(91, 143, 199, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .vorteil-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .vorteil-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(91, 143, 199, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin: 0 auto 2rem;
+        }
+
+        .vorteil-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .vorteil-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .vorteil-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            padding: 5rem 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .contact-cta h3 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .contact-cta p {
+            margin-bottom: 2.5rem;
+            color: var(--white);
+            opacity: 0.95;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info-item {
+            text-align: center;
+            color: white;
+        }
+
+        .contact-info-item svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .contact-info-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contact-info-item p,
+        .contact-info-item a {
+            color: white;
+            opacity: 0.9;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-info-item a:hover {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(91, 143, 199, 0.2);
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .gewerke-grid,
+            .vorteile-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-section {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-section.reverse {
+                direction: ltr;
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gewerke-grid,
+            .vorteile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">BW GRUPPE</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#gewerke">Gewerke</a></li>
+                <li><a href="#leistungen">Leistungen</a></li>
+                <li><a href="#vorteile">Vorteile</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Full-Service Sanierung</div>
+            <h1>Ihr Anbieter für alle <span class="highlight">Gewerke</span><br>der Sanierung</h1>
+            <p>Von Fenstern und Türen über Innenausbau bis hin zu kompletten Sanierungen – wir sind Ihr zuverlässiger Partner in Stuttgart und Umgebung.</p>
+            
+            <div class="cta-buttons">
+                <a href="#kontakt" class="btn btn-primary">
+                    Beratung anfragen
+                    <i data-lucide="arrow-right"></i>
+                </a>
+                <a href="#gewerke" class="btn btn-secondary">
+                    Unsere Leistungen
+                    <i data-lucide="info"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gewerke Overview -->
+    <section class="section-light" id="gewerke">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Unsere Expertise</div>
+                <h2 class="section-title">Alle Gewerke aus einer Hand</h2>
+                <p class="section-description">Als Full-Service Dienstleister bieten wir Ihnen alle Gewerke für Ihre Sanierung. Ein Ansprechpartner, alle Lösungen.</p>
+            </div>
+            
+            <div class="gewerke-grid">
+                <div class="gewerk-card">
+                    <div class="gewerk-icon">
+                        <i data-lucide="door-open"></i>
+                    </div>
+                    <h3>Fenster & Türen</h3>
+                    <p>Hochwertige Fenster- und Türlösungen für Ihr Zuhause oder Gewerbeobjekt.</p>
+                    <ul class="gewerk-list">
+                        <li><i data-lucide="check"></i> Kunststofffenster</li>
+                        <li><i data-lucide="check"></i> Aluminiumfenster</li>
+                        <li><i data-lucide="check"></i> Holzfenster</li>
+                        <li><i data-lucide="check"></i> Dachfenster</li>
+                        <li><i data-lucide="check"></i> Türen aller Art</li>
+                    </ul>
+                </div>
+
+                <div class="gewerk-card">
+                    <div class="gewerk-icon">
+                        <i data-lucide="layers"></i>
+                    </div>
+                    <h3>Innenausbau</h3>
+                    <p>Maßgeschneiderte Lösungen für Wände, Decken und Böden nach Ihren Wünschen.</p>
+                    <ul class="gewerk-list">
+                        <li><i data-lucide="check"></i> Trockenbau</li>
+                        <li><i data-lucide="check"></i> Deckengestaltung</li>
+                        <li><i data-lucide="check"></i> Bodenverlegung</li>
+                        <li><i data-lucide="check"></i> Wandgestaltung</li>
+                        <li><i data-lucide="check"></i> Raumaufteilung</li>
+                    </ul>
+                </div>
+
+                <div class="gewerk-card">
+                    <div class="gewerk-icon">
+                        <i data-lucide="paint-bucket"></i>
+                    </div>
+                    <h3>Maler & Lackierarbeiten</h3>
+                    <p>Professionelle Malerarbeiten für Innen- und Außenbereiche.</p>
+                    <ul class="gewerk-list">
+                        <li><i data-lucide="check"></i> Innenmalerei</li>
+                        <li><i data-lucide="check"></i> Fassadengestaltung</li>
+                        <li><i data-lucide="check"></i> Lackierarbeiten</li>
+                        <li><i data-lucide="check"></i> Tapezierarbeiten</li>
+                        <li><i data-lucide="check"></i> Dekorative Techniken</li>
+                    </ul>
+                </div>
+
+                <div class="gewerk-card">
+                    <div class="gewerk-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Elektroinstallation</h3>
+                    <p>Sichere und moderne Elektroinstallationen vom Fachmann.</p>
+                    <ul class="gewerk-list">
+                        <li><i data-lucide="check"></i> Neuinstallationen</li>
+                        <li><i data-lucide="check"></i> Modernisierung</li>
+                        <li><i data-lucide="check"></i> Smart Home</li>
+                        <li><i data-lucide="check"></i> Beleuchtungskonzepte</li>
+                        <li><i data-lucide="check"></i> Sicherheitstechnik</li>
+                    </ul>
+                </div>
+
+                <div class="gewerk-card">
+                    <div class="gewerk-icon">
+                        <i data-lucide="droplet"></i>
+                    </div>
+                    <h3>Sanitär & Heizung</h3>
+                    <p>Komplettlösungen für Sanitär, Heizung und Klimatechnik.</p>
+                    <ul class="gewerk-list">
+                        <li><i data-lucide="check"></i> Badsanierung</li>
+                        <li><i data-lucide="check"></i> Heizungsmodernisierung</li>
+                        <li><i data-lucide="check"></i> Rohrleitungsbau</li>
+                        <li><i data-lucide="check"></i> Klimaanlagen</li>
+                        <li><i data-lucide="check"></i> Wartung & Service</li>
+                    </ul>
+                </div>
+
+                <div class="gewerk-card">
+                    <div class="gewerk-icon">
+                        <i data-lucide="home"></i>
+                    </div>
+                    <h3>Dach & Fassade</h3>
+                    <p>Professionelle Dächer und Fassaden für langlebigen Schutz.</p>
+                    <ul class="gewerk-list">
+                        <li><i data-lucide="check"></i> Dachsanierung</li>
+                        <li><i data-lucide="check"></i> Fassadendämmung</li>
+                        <li><i data-lucide="check"></i> Dachdeckerarbeiten</li>
+                        <li><i data-lucide="check"></i> Fassadenreinigung</li>
+                        <li><i data-lucide="check"></i> Gerüstbau</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fenster & Türen Detail -->
+    <section class="section-white" id="leistungen">
+        <div class="container">
+            <div class="detail-section">
+                <div class="detail-image">
+                    <img src="/BW-Real-Estate-Fenster-Tueren-4-1030x688.jpg" alt="Fenster und Türen">
+                </div>
+                <div class="detail-content">
+                    <h3>Fenster & Türen</h3>
+                    <p>Unser erfahrenes Team steht Ihnen jederzeit mit kompetenter Beratung zur Seite, um die perfekten Fenster- und Türlösungen für Ihr Zuhause oder Ihr Projekt zu finden. Wir legen großen Wert darauf, Ihre individuellen Wünsche und Anforderungen genau zu verstehen.</p>
+                    
+                    <div class="detail-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="shield"></i>
+                            </div>
+                            <div>
+                                <h4>Kunststofffenster</h4>
+                                <p>Langlebig, pflegeleicht und energieeffizient</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="sparkles"></i>
+                            </div>
+                            <div>
+                                <h4>Aluminiumfenster</h4>
+                                <p>Modern, robust und in vielen Designs verfügbar</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="tree-deciduous"></i>
+                            </div>
+                            <div>
+                                <h4>Holzfenster</h4>
+                                <p>Natürlich, wohnlich und nachhaltig</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="sun"></i>
+                            </div>
+                            <div>
+                                <h4>Dachfenster</h4>
+                                <p>Mehr Licht und Luft für Ihre Dachräume</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innenausbau Detail -->
+    <section class="section-light">
+        <div class="container">
+            <div class="detail-section reverse">
+                <div class="detail-image">
+                    <img src="/BW-Real-Estate-Referenz-41-1030x687.jpg" alt="Innenausbau">
+                </div>
+                <div class="detail-content">
+                    <h3>Innenausbau</h3>
+                    <p>Unser erfahrenes Team unterstützt Sie dabei, Ihre Ausbauprojekte nach Ihren Wünschen zu realisieren. Ob Wände, Decken oder Böden – wir nehmen uns die Zeit, Ihre individuellen Anforderungen zu verstehen, und bieten Ihnen innovative Lösungen, die Ästhetik und Funktionalität vereinen.</p>
+                    
+                    <div class="detail-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="square"></i>
+                            </div>
+                            <div>
+                                <h4>Trockenbau</h4>
+                                <p>Flexible Raumgestaltung und schnelle Umsetzung</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="maximize-2"></i>
+                            </div>
+                            <div>
+                                <h4>Deckengestaltung</h4>
+                                <p>Von abgehängten Decken bis zu Spanndecken</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="grid"></i>
+                            </div>
+                            <div>
+                                <h4>Bodenverlegung</h4>
+                                <p>Parkett, Laminat, Fliesen und mehr</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="paintbrush"></i>
+                            </div>
+                            <div>
+                                <h4>Wandgestaltung</h4>
+                                <p>Kreative Lösungen für individuelle Räume</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elektrik Detail -->
+    <section class="section-white">
+        <div class="container">
+            <div class="detail-section">
+                <div class="detail-image">
+                    <img src="/Produktbild_Elektrik-Elektronik.jpg" style="border-radius: 8px;"></img>
+                </div>
+                <div class="detail-content">
+                    <h3>Elektrik vom Fach</h3>
+                    <p>Unser Expertenteam steht Ihnen mit fundierter Beratung und umfassendem Know-how im Bereich Elektrik zur Seite. Ob es um die Modernisierung Ihrer elektrischen Anlagen, die Installation neuer Systeme oder energieeffiziente Lösungen geht – wir finden die beste Option für Ihre Anforderungen. Sicherheit, Qualität und Innovation stehen bei uns an erster Stelle.</p>
+                    
+                    <div class="detail-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="plug-zap"></i>
+                            </div>
+                            <div>
+                                <h4>Ladesäulen</h4>
+                                <p>Moderne E-Mobility Lösungen für Ihr Zuhause oder Unternehmen</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="lightbulb"></i>
+                            </div>
+                            <div>
+                                <h4>Beleuchtung</h4>
+                                <p>Intelligente Beleuchtungskonzepte für jeden Raum</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="sun"></i>
+                            </div>
+                            <div>
+                                <h4>Photovoltaik</h4>
+                                <p>Nachhaltige Energiegewinnung durch Solaranlagen</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="wifi"></i>
+                            </div>
+                            <div>
+                                <h4>Kommunikation</h4>
+                                <p>Moderne Netzwerk- und Kommunikationstechnik</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dach Detail -->
+    <section class="section-light">
+        <div class="container">
+            <div class="detail-section reverse">
+                <div class="detail-image">
+                    <img src="/Referenzbild-PV2A-1030x687.jpg" style="border-radius: 8px;"></img>
+                </div>
+                <div class="detail-content">
+                    <h3>Ihr Dach in besten Händen</h3>
+                    <p>Von der Sanierung bis zur Modernisierung: Unser Team ist Ihr verlässlicher Partner für alle Dacharbeiten. Wir hören genau zu, um Ihre Wünsche zu verstehen, und bieten Ihnen individuelle Lösungen, die Langlebigkeit und optimale Funktion garantieren. Ihr Dach ist bei uns in besten Händen – sicher, stabil und perfekt auf Ihre Bedürfnisse abgestimmt.</p>
+                    
+                    <div class="detail-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="wrench"></i>
+                            </div>
+                            <div>
+                                <h4>Dachsanierung</h4>
+                                <p>Professionelle Sanierung für langlebigen Schutz</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="shield"></i>
+                            </div>
+                            <div>
+                                <h4>Dachdämmung</h4>
+                                <p>Energieeffiziente Dämmung für optimales Raumklima</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="leaf"></i>
+                            </div>
+                            <div>
+                                <h4>Dachbegrünung</h4>
+                                <p>Ökologische und moderne Dachgestaltung</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="sun"></i>
+                            </div>
+                            <div>
+                                <h4>PV-Anlagen</h4>
+                                <p>Solarenergie optimal auf dem Dach nutzen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heizung & Sanitär Detail -->
+    <section class="section-white">
+        <div class="container">
+            <div class="detail-section">
+                <div class="detail-image">
+                    <img src="/BW-Real-Estate-Referenz-17-1030x685.jpg" style="border-radius: 8px;"></img>
+                </div>
+                <div class="detail-content">
+                    <h3>Effiziente Heizung & moderne Sanitärlösungen</h3>
+                    <p>Egal ob es um eine neue Heizungsanlage, energieeffiziente Systeme oder eine zeitgemäße Badsanierung geht – unser Team begleitet Sie mit fachkundiger Beratung und innovativen Ideen. Wir planen individuell nach Ihren Anforderungen und setzen auf hochwertige Lösungen, die Komfort und Nachhaltigkeit miteinander verbinden.</p>
+                    
+                    <div class="detail-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="flame"></i>
+                            </div>
+                            <div>
+                                <h4>Heizungsanlagen</h4>
+                                <p>Moderne und energieeffiziente Heizungssysteme</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="bath"></i>
+                            </div>
+                            <div>
+                                <h4>Badsanierung</h4>
+                                <p>Komplettlösungen für Ihr neues Traumbad</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="thermometer"></i>
+                            </div>
+                            <div>
+                                <h4>Wärmepumpen</h4>
+                                <p>Nachhaltige Heizlösungen für die Zukunft</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="droplets"></i>
+                            </div>
+                            <div>
+                                <h4>Sanitärinstallation</h4>
+                                <p>Professionelle Installation und Wartung</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fassade Detail -->
+    <section class="section-light">
+        <div class="container">
+            <div class="detail-section reverse">
+                <div class="detail-image">
+                    <img src="/Beihinger-Str-41-Freiberg-aN-1030x685.jpg" style="border-radius: 8px;"></img>
+                </div>
+                <div class="detail-content">
+                    <h3>Fassadensanierung mit Stil</h3>
+                    <p>Eine gepflegte Fassade ist nicht nur ein Hingucker, sondern auch ein wichtiger Schutz für Ihre Immobilie. Unser erfahrenes Team berät Sie umfassend und entwickelt individuelle Lösungen, die Ästhetik, Langlebigkeit und Energieeffizienz kombinieren. Gemeinsam geben wir Ihrem Gebäude ein neues, hochwertiges Erscheinungsbild, das sich sehen lassen kann.</p>
+                    
+                    <div class="detail-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="brush"></i>
+                            </div>
+                            <div>
+                                <h4>Fassadenanstrich</h4>
+                                <p>Professionelle Gestaltung und Schutz der Außenwände</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="layers"></i>
+                            </div>
+                            <div>
+                                <h4>Wärmedämmung</h4>
+                                <p>Energieeffizienz durch moderne Dämmtechnik</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="sparkles"></i>
+                            </div>
+                            <div>
+                                <h4>Fassadenreinigung</h4>
+                                <p>Schonende Reinigung für neuen Glanz</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i data-lucide="hammer"></i>
+                            </div>
+                            <div>
+                                <h4>Sanierung</h4>
+                                <p>Umfassende Sanierung beschädigter Fassaden</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vorteile Section -->
+    <section class="section-dark" id="vorteile">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Ihre Vorteile</div>
+                <h2 class="section-title">Warum BW Gruppe?</h2>
+                <p class="section-description">Wir bieten Ihnen genügend Gründe für eine erfolgreiche Zusammenarbeit.</p>
+            </div>
+            
+            <div class="vorteile-grid">
+                <div class="vorteil-card">
+                    <div class="vorteil-icon">
+                        <i data-lucide="package"></i>
+                    </div>
+                    <h3>Ganzheitlichkeit</h3>
+                    <p>Wir sind ein Full-Service Dienstleister. Über uns können Sie alle Gewerke in Anspruch nehmen – von der Planung bis zur Fertigstellung.</p>
+                </div>
+
+                <div class="vorteil-card">
+                    <div class="vorteil-icon">
+                        <i data-lucide="user-check"></i>
+                    </div>
+                    <h3>Ein Ansprechpartner</h3>
+                    <p>Ein Anruf bei uns genügt, um alle Gewerke in Anspruch nehmen zu können. So sparen Sie jede Menge Aufwand und Koordinationsaufwand.</p>
+                </div>
+
+                <div class="vorteil-card">
+                    <div class="vorteil-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Schnelle Bearbeitung</h3>
+                    <p>Wir lassen Sie nicht warten und setzen unmittelbar nach Angebotsannahme Ihr Vorhaben um. Zuverlässig und termingerecht.</p>
+                </div>
+
+                <div class="vorteil-card">
+                    <div class="vorteil-icon">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <h3>Qualität & Erfahrung</h3>
+                    <p>Mit über 20 Jahren Erfahrung und 50+ Mitarbeitern garantieren wir höchste Qualitätsstandards bei jedem Projekt.</p>
+                </div>
+
+                <div class="vorteil-card">
+                    <div class="vorteil-icon">
+                        <i data-lucide="calculator"></i>
+                    </div>
+                    <h3>Transparente Preise</h3>
+                    <p>Faire und nachvollziehbare Angebote ohne versteckte Kosten. Sie wissen immer genau, was Sie erwartet.</p>
+                </div>
+
+                <div class="vorteil-card">
+                    <div class="vorteil-icon">
+                        <i data-lucide="handshake"></i>
+                    </div>
+                    <h3>Persönliche Beratung</h3>
+                    <p>Individuelle Beratung und maßgeschneiderte Lösungen, die genau zu Ihren Anforderungen passen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-white" id="kontakt">
+        <div class="container">
+            <div class="contact-cta">
+                <h3>Starten Sie Ihr Sanierungsprojekt</h3>
+                <p>Kontaktieren Sie uns für eine unverbindliche Beratung. Wir besprechen Ihr Projekt und erstellen Ihnen ein maßgeschneidertes Angebot – schnell, transparent und professionell.</p>
+                
+                <div class="cta-buttons" style="justify-content: center;">
+                    <a href="tel:+4971162005980" class="btn btn-primary" style="background: white; color: var(--accent);">
+                        Jetzt anrufen
+                        <i data-lucide="phone"></i>
+                    </a>
+                    <a href="mailto:info@bwgruppe.com" class="btn btn-secondary" style="border-color: white; color: white;">
+                        E-Mail senden
+                        <i data-lucide="mail"></i>
+                    </a>
+                </div>
+
+                <div class="contact-info-grid">
+                    <div class="contact-info-item">
+                        <i data-lucide="map-pin"></i>
+                        <h4>Adresse</h4>
+                        <p>Withauweg 3<br>70439 Stuttgart</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="phone"></i>
+                        <h4>Telefon</h4>
+                        <p><a href="tel:+4971162005980">+49 711 620 059 80</a></p>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="mail"></i>
+                        <h4>E-Mail</h4>
+                        <p><a href="mailto:info@bwgruppe.com">info@bwgruppe.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>BW GRUPPE</h3>
+                <p>Ihr Full-Service Dienstleister für Sanierung in Stuttgart und Umgebung. Alle Gewerke aus einer Hand – professionell, zuverlässig und erfahren.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Gewerke</h4>
+                <ul>
+                    <li><a href="#gewerke">Fenster & Türen</a></li>
+                    <li><a href="#gewerke">Innenausbau</a></li>
+                    <li><a href="#gewerke">Maler & Lackierer</a></li>
+                    <li><a href="#gewerke">Elektro & Sanitär</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Unternehmen</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#vorteile">Über uns</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="#impressum">Impressum</a></li>
+                    <li><a href="#datenschutz">Datenschutz</a></li>
+                    <li><a href="#agb">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 BW GRUPPE. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    if (window.pageYOffset > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.gewerk-card, .vorteil-card, .detail-section, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
