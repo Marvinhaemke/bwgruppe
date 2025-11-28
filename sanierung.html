@@ -41,12 +41,18 @@
             overflow-x: hidden;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 1001; /* Erhöht für Mobile Menu */
             background: rgba(15, 20, 25, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(91, 143, 199, 0.15);
@@ -73,6 +79,8 @@
             color: var(--white);
             letter-spacing: 4px;
             text-decoration: none;
+            z-index: 1002; /* Über dem Mobile Menu Overlay */
+            position: relative;
         }
 
         .nav-links {
@@ -110,6 +118,51 @@
 
         .nav-links a:hover::before {
             width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 1002; /* Klickbar bleiben */
+            color: var(--white);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s;
+        }
+
+        .mobile-menu.active a {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section */
@@ -157,7 +210,7 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Fluid Typography */
             font-weight: 700;
             color: var(--white);
             margin-bottom: 2rem;
@@ -171,7 +224,7 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 3rem;
             max-width: 700px;
@@ -183,6 +236,7 @@
             display: flex;
             gap: 2rem;
             animation: fadeInUp 1s ease 0.6s both;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -202,6 +256,7 @@
             position: relative;
             overflow: hidden;
             min-height: 50px;
+            white-space: nowrap;
         }
 
         .btn svg {
@@ -284,7 +339,7 @@
         }
 
         .section-title {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 1.5rem;
@@ -311,14 +366,14 @@
         .gewerke-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-            margin-top: 4rem;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .gewerk-card {
             background: var(--white);
             border: 1px solid rgba(91, 143, 199, 0.15);
-            padding: 3rem 2rem;
+            padding: 2rem 1.5rem;
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
@@ -339,7 +394,7 @@
         }
 
         .gewerk-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
             border-color: var(--accent);
         }
@@ -349,52 +404,54 @@
         }
 
         .gewerk-icon {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 10px 30px rgba(91, 143, 199, 0.3);
         }
 
         .gewerk-icon svg {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
         }
 
         .gewerk-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary);
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .gewerk-card p {
             color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
         }
 
         .gewerk-list {
             list-style: none;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
         .gewerk-list li {
-            padding: 0.6rem 0;
+            padding: 0.4rem 0;
             color: var(--gray);
             display: flex;
             align-items: start;
-            gap: 1rem;
+            gap: 0.8rem;
+            font-size: 0.9rem;
         }
 
         .gewerk-list li svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             color: var(--accent);
             margin-top: 0.2rem;
             flex-shrink: 0;
@@ -505,6 +562,43 @@
             margin: 0;
         }
 
+        /* NEW: Collage Grid Section */
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 250px;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .collage-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            background: var(--lightest);
+        }
+
+        .collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collage-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Grid Spans */
+        .collage-item.wide {
+            grid-column: span 2;
+        }
+        
+        .collage-item.tall {
+            grid-row: span 2;
+        }
+
         /* Vorteile Section */
         .vorteile-grid {
             display: grid;
@@ -567,10 +661,12 @@
         }
 
         .contact-cta h3 {
-            font-size: 3rem;
+            font-size: clamp(1.8rem, 5vw, 3rem); /* FIXED: Fluid size to prevent cutoff */
             margin-bottom: 1rem;
             font-weight: 700;
             color: var(--white);
+            word-wrap: break-word; /* Ensure long words wrap if needed */
+            hyphens: auto; /* Optional: adds hyphens */
         }
 
         .contact-cta p {
@@ -697,6 +793,19 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .nav-container {
+                padding: 1.2rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* Show Menu Button on Mobile/Tablet */
+            .menu-btn {
+                display: block;
+            }
+
             .hero h1 {
                 font-size: 3rem;
             }
@@ -707,6 +816,10 @@
 
             .gewerke-grid,
             .vorteile-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .collage-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -729,6 +842,15 @@
         }
 
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
             section {
                 padding: 4rem 1.5rem;
             }
@@ -745,6 +867,16 @@
             .vorteile-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .collage-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 250px;
+            }
+            
+            .collage-item.wide, .collage-item.tall {
+                grid-column: auto;
+                grid-row: auto;
+            }
 
             .cta-buttons {
                 flex-direction: column;
@@ -757,6 +889,18 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+            
+            /* Reduced padding specifically for contact box on mobile */
+            .contact-cta {
+                padding: 3rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -765,15 +909,32 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="/" class="logo">BW GRUPPE</a>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-btn" id="menuBtn">
+                <i data-lucide="menu" width="28" height="28"></i>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="#gewerke">Gewerke</a></li>
+                <li><a href="#referenzen">Referenzen</a></li>
                 <li><a href="#leistungen">Leistungen</a></li>
                 <li><a href="#vorteile">Vorteile</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/" class="mobile-link">Home</a>
+        <a href="#gewerke" class="mobile-link">Gewerke</a>
+        <a href="#referenzen" class="mobile-link">Referenzen</a>
+        <a href="#leistungen" class="mobile-link">Leistungen</a>
+        <a href="#vorteile" class="mobile-link">Vorteile</a>
+        <a href="#kontakt" class="mobile-link">Kontakt</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -795,7 +956,7 @@
         </div>
     </section>
 
-    <!-- Gewerke Overview -->
+    <!-- Gewerke Overview - Modified to be smaller and more subtle -->
     <section class="section-light" id="gewerke">
         <div class="container">
             <div class="section-header">
@@ -815,8 +976,6 @@
                         <li><i data-lucide="check"></i> Kunststofffenster</li>
                         <li><i data-lucide="check"></i> Aluminiumfenster</li>
                         <li><i data-lucide="check"></i> Holzfenster</li>
-                        <li><i data-lucide="check"></i> Dachfenster</li>
-                        <li><i data-lucide="check"></i> Türen aller Art</li>
                     </ul>
                 </div>
 
@@ -830,8 +989,6 @@
                         <li><i data-lucide="check"></i> Trockenbau</li>
                         <li><i data-lucide="check"></i> Deckengestaltung</li>
                         <li><i data-lucide="check"></i> Bodenverlegung</li>
-                        <li><i data-lucide="check"></i> Wandgestaltung</li>
-                        <li><i data-lucide="check"></i> Raumaufteilung</li>
                     </ul>
                 </div>
 
@@ -845,8 +1002,6 @@
                         <li><i data-lucide="check"></i> Innenmalerei</li>
                         <li><i data-lucide="check"></i> Fassadengestaltung</li>
                         <li><i data-lucide="check"></i> Lackierarbeiten</li>
-                        <li><i data-lucide="check"></i> Tapezierarbeiten</li>
-                        <li><i data-lucide="check"></i> Dekorative Techniken</li>
                     </ul>
                 </div>
 
@@ -860,8 +1015,6 @@
                         <li><i data-lucide="check"></i> Neuinstallationen</li>
                         <li><i data-lucide="check"></i> Modernisierung</li>
                         <li><i data-lucide="check"></i> Smart Home</li>
-                        <li><i data-lucide="check"></i> Beleuchtungskonzepte</li>
-                        <li><i data-lucide="check"></i> Sicherheitstechnik</li>
                     </ul>
                 </div>
 
@@ -875,8 +1028,6 @@
                         <li><i data-lucide="check"></i> Badsanierung</li>
                         <li><i data-lucide="check"></i> Heizungsmodernisierung</li>
                         <li><i data-lucide="check"></i> Rohrleitungsbau</li>
-                        <li><i data-lucide="check"></i> Klimaanlagen</li>
-                        <li><i data-lucide="check"></i> Wartung & Service</li>
                     </ul>
                 </div>
 
@@ -890,16 +1041,56 @@
                         <li><i data-lucide="check"></i> Dachsanierung</li>
                         <li><i data-lucide="check"></i> Fassadendämmung</li>
                         <li><i data-lucide="check"></i> Dachdeckerarbeiten</li>
-                        <li><i data-lucide="check"></i> Fassadenreinigung</li>
-                        <li><i data-lucide="check"></i> Gerüstbau</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- NEW Reference Collage Section (Replaces image008.jpg) -->
+    <section class="section-white" id="referenzen">
+         <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Galerie</div>
+                <h2 class="section-title">Unsere Arbeit im Detail</h2>
+                <p class="section-description">Impressionen unserer abgeschlossenen Projekte und handwerklichen Details.</p>
+            </div>
+            
+            <div class="collage-grid">
+                <!-- Large Kitchen/Interior Shot -->
+                <div class="collage-item wide">
+                    <img src="/Sanierung_Stuttgart-scaled-1-1500x840.jpg" alt="Moderne Küche Sanierung">
+                </div>
+                <!-- Detail Heating/Bath -->
+                <div class="collage-item">
+                    <img src="/BW-Real-Estate-Referenz-17-1030x685.jpg" alt="Badezimmer Details">
+                </div>
+                <!-- Detail Electric -->
+                <div class="collage-item">
+                    <img src="/Produktbild_Elektrik-Elektronik.jpg" alt="Elektroinstallation">
+                </div>
+                <!-- Detail Interior Wood -->
+                <div class="collage-item">
+                    <img src="/BW-Real-Estate-Referenz-41-1030x687.jpg" alt="Innenausbau Holzboden">
+                </div>
+                 <!-- Detail Window -->
+                <div class="collage-item wide">
+                    <img src="/BW-Real-Estate-Fenster-Tueren-4-1030x688.jpg" alt="Fenster und Türen">
+                </div>
+                 <!-- Detail Facade -->
+                <div class="collage-item">
+                    <img src="/Beihinger-Str-41-Freiberg-aN-1030x685.jpg" alt="Fassadensanierung">
+                </div>
+                <!-- Detail Roof -->
+                 <div class="collage-item">
+                    <img src="/Referenzbild-PV2A-1030x687.jpg" alt="Dach und PV">
+                </div>
+            </div>
+         </div>
+    </section>
+
     <!-- Fenster & Türen Detail -->
-    <section class="section-white" id="leistungen">
+    <section class="section-light" id="leistungen">
         <div class="container">
             <div class="detail-section">
                 <div class="detail-image">
@@ -953,7 +1144,7 @@
     </section>
 
     <!-- Innenausbau Detail -->
-    <section class="section-light">
+    <section class="section-white">
         <div class="container">
             <div class="detail-section reverse">
                 <div class="detail-image">
@@ -1007,7 +1198,7 @@
     </section>
 
     <!-- Elektrik Detail -->
-    <section class="section-white">
+    <section class="section-light">
         <div class="container">
             <div class="detail-section">
                 <div class="detail-image">
@@ -1061,7 +1252,7 @@
     </section>
 
     <!-- Dach Detail -->
-    <section class="section-light">
+    <section class="section-white">
         <div class="container">
             <div class="detail-section reverse">
                 <div class="detail-image">
@@ -1115,7 +1306,7 @@
     </section>
 
     <!-- Heizung & Sanitär Detail -->
-    <section class="section-white">
+    <section class="section-light">
         <div class="container">
             <div class="detail-section">
                 <div class="detail-image">
@@ -1169,7 +1360,7 @@
     </section>
 
     <!-- Fassade Detail -->
-    <section class="section-light">
+    <section class="section-white">
         <div class="container">
             <div class="detail-section reverse">
                 <div class="detail-image">
@@ -1368,6 +1559,34 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.add('active');
+                menuBtn.innerHTML = '<i data-lucide="x" width="28" height="28"></i>';
+            } else {
+                mobileMenu.classList.remove('active');
+                menuBtn.innerHTML = '<i data-lucide="menu" width="28" height="28"></i>';
+            }
+            lucide.createIcons();
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.remove('active');
+                menuBtn.innerHTML = '<i data-lucide="menu" width="28" height="28"></i>';
+                lucide.createIcons();
+            });
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1416,7 +1635,7 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.gewerk-card, .vorteil-card, .detail-section, .feature-item').forEach(el => {
+        document.querySelectorAll('.gewerk-card, .vorteil-card, .detail-section, .feature-item, .collage-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(40px)';
             el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
