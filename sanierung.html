@@ -168,6 +168,8 @@
         /* Hero Section */
         .hero {
             margin-top: 0;
+            /* FIX: Padding auf 0 setzen um Section Padding zu überschreiben */
+            padding: 0;
             min-height: 80vh;
             display: flex;
             align-items: center;
@@ -911,17 +913,20 @@
                 font-size: 2rem;
             }
             
+            /* HERO FIX MOBILE: Padding auf 1.5rem setzen, Text linksbündig */
             .hero-content {
-                text-align: center; /* Center hero mobile */
+                padding: 0 1.5rem;
+                text-align: left;
             }
 
             .cta-buttons {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start; /* Buttons linksbündig */
             }
 
             .btn {
                 width: 100%;
+                max-width: 350px;
             }
 
             .footer-content {
@@ -1611,47 +1616,6 @@
             });
         });
 
-        // Lightbox Logic
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.getElementById('lightboxClose');
-        
-        // Function to open lightbox
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-
-        // Close on X click
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close on click outside image
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Attach listeners to gallery images
-        // We use event delegation since gallery items are created dynamically
-        document.getElementById('galleryGrid').addEventListener('click', (e) => {
-            if (e.target.tagName === 'IMG') {
-                openLightbox(e.target.src);
-            }
-        });
-
-        // Attach listeners to detail images
-        document.querySelectorAll('.detail-image img').forEach(img => {
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', () => openLightbox(img.src));
-        });
-
-
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1682,6 +1646,45 @@
                 });
                 ticking = true;
             }
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        
+        // Function to open lightbox
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        // Close on X click
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close on click outside image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Attach listeners to gallery images
+        document.getElementById('galleryGrid').addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG') {
+                openLightbox(e.target.src);
+            }
+        });
+
+        // Attach listeners to detail images
+        document.querySelectorAll('.detail-image img').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => openLightbox(img.src));
         });
 
         // Intersection Observer for animations
