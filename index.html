@@ -440,8 +440,14 @@
         }
 
         .ankauf-details {
-            display: grid;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
+        }
+        
+        .ankauf-details > .detail-card {
+             width: 100%;
         }
 
         .detail-card {
@@ -520,13 +526,17 @@
         }
 
         .prozess-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 3rem;
             margin-top: 4rem;
         }
 
         .prozess-step {
+            flex: 0 1 calc(25% - 2.25rem);
+            min-width: 250px;
+            
             background: var(--lightest);
             padding: 3rem 2rem;
             transition: all 0.4s;
@@ -586,13 +596,17 @@
 
         /* Referenzen Section */
         .referenzen-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2.5rem;
             margin-top: 4rem;
         }
 
         .referenz-card {
+            flex: 0 1 calc(33.333% - 1.7rem);
+            min-width: 300px;
+
             background: var(--white);
             border-radius: 12px;
             overflow: hidden;
@@ -600,7 +614,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             display: flex;
             flex-direction: column;
-            height: 100%;
         }
 
         .referenz-card:hover {
@@ -640,7 +653,6 @@
             letter-spacing: 0.5px;
         }
         
-        /* Status Colors */
         .status-verkauft { background: #e53935; color: white; }
         .status-vermietet { background: #43a047; color: white; }
         .status-entwicklung { background: #fb8c00; color: white; }
@@ -759,15 +771,19 @@
         }
 
         .team-stats {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
             margin-bottom: 5rem;
         }
 
         .stat-card {
+            flex: 0 1 calc(20% - 1.6rem); /* 5 columns */
+            min-width: 200px;
+            
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 3rem 1.5rem;
             background: white;
             border-top: 3px solid var(--accent);
             border-radius: 8px;
@@ -781,20 +797,34 @@
         }
 
         .stat-number {
-            font-size: clamp(2rem, 3.5vw, 3rem); /* Slightly smaller to fit 5 items */
+            font-size: clamp(2rem, 3.5vw, 3rem); 
             font-weight: 700;
             color: var(--accent);
             margin-bottom: 0.5rem;
         }
+        
+        /* Smaller font for big numbers */
+        .stat-number-small {
+            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem; /* Optical balance */
+        }
 
         .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .team-member {
+            /* 4 columns: calc(25% - gap) */
+            flex: 0 1 calc(25% - 1.5rem);
+            min-width: 240px;
+
             background: white;
             overflow: hidden;
             transition: all 0.3s;
@@ -840,54 +870,6 @@
             color: var(--accent);
             font-size: 0.9rem;
             font-weight: 500;
-        }
-
-        /* Partner Section */
-        .partner-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .partner-logo {
-            aspect-ratio: 16/9;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(91, 143, 199, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            padding: 2rem;
-            border-radius: 12px;
-            gap: 1rem;
-        }
-
-        .partner-logo:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: var(--accent);
-            transform: scale(1.05);
-        }
-
-        .partner-icon {
-            color: var(--white);
-            transition: color 0.3s ease;
-        }
-
-        .partner-logo:hover .partner-icon {
-            color: var(--accent);
-        }
-
-        .partner-icon svg {
-            width: 48px;
-            height: 48px;
-        }
-        
-        .partner-placeholder {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
-            text-align: center;
         }
 
         /* Contact Section */
@@ -953,6 +935,7 @@
             border: 1px solid var(--accent);
             padding: 4rem;
             border-radius: 12px;
+            width: 100%; /* Ensure it doesn't overflow parent */
         }
         
         .contact-cta h3 {
@@ -1072,26 +1055,6 @@
                 height: 400px;
             }
 
-            .prozess-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .referenzen-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .team-stats {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .partner-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
             .contact-content {
                 grid-template-columns: 1fr;
             }
@@ -1119,25 +1082,22 @@
                 padding: 4rem 1.5rem;
             }
 
+            /* Fixed Mobile Hero */
             .hero-content {
-                padding: 0 1.5rem;
+                padding: 0 1.5rem; /* Ensure consistent padding */
+                /* text-align: center; Removed to keep left aligned */
             }
 
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
+                /* align-items: center; Removed to keep left aligned */
+                /* justify-content: center; Removed to keep left aligned */
             }
 
             .btn {
                 width: 100%;
-            }
-
-            .prozess-grid,
-            .referenzen-grid,
-            .team-stats,
-            .team-grid,
-            .partner-grid {
-                grid-template-columns: 1fr;
+                max-width: 350px; /* Prevent too wide buttons */
             }
 
             .footer-content {
@@ -1150,6 +1110,21 @@
             
             .detail-card {
                 padding: 1.5rem;
+            }
+            
+            /* Mobile Contact CTA Fix */
+            .contact-cta {
+                padding: 2.5rem 1.5rem; /* Reduced padding */
+            }
+            
+            .contact-cta h3 {
+                font-size: 1.8rem; /* Smaller headline */
+                word-wrap: break-word; /* Ensure long words break */
+                hyphens: auto;
+            }
+            
+            .stat-card, .prozess-step, .referenz-card, .team-member {
+                flex: 0 1 100%; /* Full width cards on mobile */
             }
         }
 
@@ -1631,71 +1606,6 @@
         </div>
     </section>
 
-    <!-- Sanierung Section -->
-    <section class="section-light" id="sanierung">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">Unsere Leistungen</div>
-                <h2 class="section-title">Full-Service Sanierung</h2>
-                <p class="section-description">Von Fenstern und Türen über Innenausbau bis hin zu kompletten Sanierungen – alle Gewerke aus einer Hand.</p>
-            </div>
-            
-            <div class="sanierung-showcase">
-                <div class="sanierung-image">
-                    <img src="/Sanierung_Stuttgart-scaled-1-1500x840.jpg" alt="Innenausbau" loading="lazy">
-                </div>
-                <div class="sanierung-content">
-                    <h3>Ihr Partner für alle Gewerke der Sanierung</h3>
-                    <p>Als Full-Service Dienstleister bieten wir Ihnen alle Gewerke für Ihre Sanierung. Ein Ansprechpartner, schnelle Bearbeitung und höchste Qualität – von der Planung bis zur Fertigstellung.</p>
-                    
-                    <div class="sanierung-features">
-                        <div class="sanierung-feature">
-                            <div class="sanierung-feature-icon">
-                                <i data-lucide="door-open"></i>
-                            </div>
-                            <span>Fenster & Türen</span>
-                        </div>
-                        <div class="sanierung-feature">
-                            <div class="sanierung-feature-icon">
-                                <i data-lucide="layers"></i>
-                            </div>
-                            <span>Innenausbau</span>
-                        </div>
-                        <div class="sanierung-feature">
-                            <div class="sanierung-feature-icon">
-                                <i data-lucide="zap"></i>
-                            </div>
-                            <span>Elektrik</span>
-                        </div>
-                        <div class="sanierung-feature">
-                            <div class="sanierung-feature-icon">
-                                <i data-lucide="droplet"></i>
-                            </div>
-                            <span>Sanitär & Heizung</span>
-                        </div>
-                        <div class="sanierung-feature">
-                            <div class="sanierung-feature-icon">
-                                <i data-lucide="home"></i>
-                            </div>
-                            <span>Dach & Fassade</span>
-                        </div>
-                        <div class="sanierung-feature">
-                            <div class="sanierung-feature-icon">
-                                <i data-lucide="paint-bucket"></i>
-                            </div>
-                            <span>Maler & Lackierer</span>
-                        </div>
-                    </div>
-                    
-                    <a href="sanierung.html" class="btn btn-primary">
-                        Mehr über Sanierung
-                        <i data-lucide="arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Team Section - Light -->
     <section class="team section-white" id="team">
         <div class="container">
@@ -1705,7 +1615,7 @@
                 <p class="section-description">Kompetenz und Erfahrung für Ihre Immobilienprojekte.</p>
             </div>
 
-            <!-- Changed Grid to 5 items -->
+            <!-- Changed Grid to 5 items with small font for big numbers -->
             <div class="team-stats">
                 <div class="stat-card">
                     <div class="stat-icon">
@@ -1732,14 +1642,14 @@
                     <div class="stat-icon">
                         <i data-lucide="euro"></i>
                     </div>
-                    <div class="stat-number">+ 200 Mio €</div>
+                    <div class="stat-number-small">+ 200 Mio €</div>
                     <div class="stat-label">Transaktionsvolumen</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">
                         <i data-lucide="maximize"></i>
                     </div>
-                    <div class="stat-number">+ 25.000m²</div>
+                    <div class="stat-number-small">+ 25.000m²</div>
                     <div class="stat-label">entwickelte Fläche</div>
                 </div>
             </div>
@@ -1847,50 +1757,6 @@
         </div>
     </section>
 
-    <!-- Partner Section - Dark -->
-    <section class="partner section-dark" id="partner">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">Netzwerk</div>
-                <h2 class="section-title">Unsere Partner</h2>
-                <p class="section-description">Starke Partnerschaften mit führenden Banken, Dienstleistern und Institutionen.</p>
-            </div>
-            
-            <div class="partner-grid">
-                <div class="partner-logo">
-                    <div class="partner-icon">
-                        <i data-lucide="landmark"></i>
-                    </div>
-                    <div class="partner-placeholder">Bank Partner</div>
-                </div>
-                <div class="partner-logo">
-                    <div class="partner-icon">
-                        <i data-lucide="shield-check"></i>
-                    </div>
-                    <div class="partner-placeholder">Versicherung</div>
-                </div>
-                <div class="partner-logo">
-                    <div class="partner-icon">
-                        <i data-lucide="factory"></i>
-                    </div>
-                    <div class="partner-placeholder">Rohstoffhändler</div>
-                </div>
-                <div class="partner-logo">
-                    <div class="partner-icon">
-                        <i data-lucide="calculator"></i>
-                    </div>
-                    <div class="partner-placeholder">Steuerberatung</div>
-                </div>
-                <div class="partner-logo">
-                    <div class="partner-icon">
-                        <i data-lucide="scale"></i>
-                    </div>
-                    <div class="partner-placeholder">Rechtsberatung</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section - Dark -->
     <section class="contact section-dark" id="kontakt">
         <div class="container">
@@ -1977,7 +1843,7 @@
                 <ul>
                     <li><a href="#team">Über uns</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li><a href="#partner">Partner</a></li>
+                    <!-- Partner link removed -->
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </div>
