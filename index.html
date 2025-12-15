@@ -57,7 +57,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1001; /* FIX: Erhöht auf 1001, damit es über dem Mobile-Menu (1000) liegt */
+            z-index: 1001;
             background: rgba(15, 20, 25, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(91, 143, 199, 0.15);
@@ -83,7 +83,7 @@
             font-weight: 600;
             color: var(--white);
             letter-spacing: 4px;
-            z-index: 1002; /* Sicherheitshalber noch höher */
+            z-index: 1002;
             position: relative;
         }
 
@@ -128,7 +128,7 @@
         .menu-btn {
             display: none;
             cursor: pointer;
-            z-index: 1002; /* FIX: Button muss klickbar bleiben */
+            z-index: 1002;
             color: var(--white);
         }
 
@@ -403,13 +403,12 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Ankauf Section - Now Dark (Secondary Color) */
+        /* Ankauf Section */
         .ankauf {
             background: var(--secondary);
             padding-top: 6rem; 
         }
 
-        /* Specific text overrides for the dark ankauf section */
         .ankauf .section-title {
             color: var(--white);
         }
@@ -599,6 +598,9 @@
             overflow: hidden;
             transition: all 0.4s;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .referenz-card:hover {
@@ -637,139 +639,46 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        
+        /* Status Colors */
+        .status-verkauft { background: #e53935; color: white; }
+        .status-vermietet { background: #43a047; color: white; }
+        .status-entwicklung { background: #fb8c00; color: white; }
 
         .referenz-content {
             padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .referenz-content h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
         .referenz-meta {
             display: flex;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
-        }
-
-        .referenz-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
             color: var(--gray);
             font-size: 0.9rem;
         }
-
-        /* Objekttypen - Dark */
-        .objekttypen-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .objekt-card {
-            aspect-ratio: 16/9;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(91, 143, 199, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-            padding: 1.5rem;
-            border-radius: 8px;
-            z-index: 1;
-        }
-
-        .objekt-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--accent);
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.4s;
-        }
-
-        .objekt-card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 0.4s ease, transform 0.6s ease;
-            z-index: -2;
-        }
         
-        .objekt-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 100%);
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.4s;
-        }
-
-        .objekt-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .objekt-card:hover .objekt-card-bg {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
-        .objekt-card:hover::after {
-            opacity: 1;
-        }
-
-        .objekt-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(91, 143, 199, 0.15);
-            border-radius: 12px;
+        .referenz-meta span {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            transition: all 0.3s;
+            gap: 0.4rem;
         }
 
-        .objekt-card:hover .objekt-icon {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .objekt-icon svg {
-            width: 30px;
-            height: 30px;
-        }
-
-        .objekt-card h3 {
-            font-size: 1.1rem;
-            color: var(--white);
-            font-weight: 500;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        .referenz-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Sanierung Section */
@@ -851,7 +760,7 @@
 
         .team-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 2rem;
             margin-bottom: 5rem;
         }
@@ -872,7 +781,7 @@
         }
 
         .stat-number {
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-size: clamp(2rem, 3.5vw, 3rem); /* Slightly smaller to fit 5 items */
             font-weight: 700;
             color: var(--accent);
             margin-bottom: 0.5rem;
@@ -891,6 +800,13 @@
             transition: all 0.3s;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .team-photo {
@@ -910,6 +826,20 @@
 
         .team-info {
             padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .team-name {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+        
+        .team-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* Partner Section */
@@ -940,7 +870,6 @@
             transform: scale(1.05);
         }
 
-        /* Fixed Icon Color */
         .partner-icon {
             color: var(--white);
             transition: color 0.3s ease;
@@ -956,7 +885,7 @@
         }
         
         .partner-placeholder {
-            color: rgba(255, 255, 255, 0.7); /* Improved contrast */
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.85rem;
             text-align: center;
         }
@@ -1005,7 +934,7 @@
         }
 
         .contact-item-content p {
-            color: rgba(255, 255, 255, 0.85); /* Improved contrast */
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.7;
         }
 
@@ -1020,7 +949,6 @@
         }
 
         .contact-cta {
-            /* Changed from light gradient to dark with border for better text contrast */
             background: linear-gradient(135deg, var(--secondary), var(--dark));
             border: 1px solid var(--accent);
             padding: 4rem;
@@ -1066,7 +994,7 @@
         }
 
         .footer-brand p {
-            color: rgba(255, 255, 255, 0.8); /* Improved contrast */
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.8;
         }
 
@@ -1084,7 +1012,7 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8); /* Improved contrast */
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: all 0.3s;
             display: block;
@@ -1100,7 +1028,7 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6); /* Improved contrast */
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
         }
 
@@ -1148,12 +1076,14 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .objekttypen-grid,
             .referenzen-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .team-stats,
+            .team-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1203,7 +1133,6 @@
             }
 
             .prozess-grid,
-            .objekttypen-grid,
             .referenzen-grid,
             .team-stats,
             .team-grid,
@@ -1251,9 +1180,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#ankauf">Ankauf</a></li>
                 <li><a href="#prozess">Prozess</a></li>
-                <li><a href="#objekttypen">Objekttypen</a></li>
-                <li><a href="/sanierung">Sanierung</a></li>
                 <li><a href="#referenzen">Referenzen</a></li>
+                <li><a href="#sanierung">Sanierung</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
@@ -1265,9 +1193,8 @@
         <a href="#home" class="mobile-link">Home</a>
         <a href="#ankauf" class="mobile-link">Ankauf</a>
         <a href="#prozess" class="mobile-link">Prozess</a>
-        <a href="#objekttypen" class="mobile-link">Objekttypen</a>
-        <a href="/sanierung" class="mobile-link">Sanierung</a>
         <a href="#referenzen" class="mobile-link">Referenzen</a>
+        <a href="#sanierung" class="mobile-link">Sanierung</a>
         <a href="#team" class="mobile-link">Team</a>
         <a href="#kontakt" class="mobile-link">Kontakt</a>
     </div>
@@ -1347,8 +1274,8 @@
                             </div>
                             <h3>Ankaufsvolumen</h3>
                         </div>
-                        <p><strong>Transaktionsvolumen:</strong> + € 200 Millionen<br>
-                        <strong>Entwickelte Fläche:</strong> + 25.000m²<br>
+                        <p><strong>Einzelobjekte:</strong> ab € 500.000<br>
+                        <strong>Portfolios:</strong> bis € 50 Millionen<br>
                         <strong>Eigenkapital:</strong> Volle Kaufkraft</p>
                     </div>
 
@@ -1429,140 +1356,276 @@
             </div>
             
             <div class="referenzen-grid">
+                <!-- Bild 1 -->
                 <div class="referenz-card">
                     <div class="referenz-image">
-                        <img src="/Albrecht-Duerer-Weg-scaled-1-1030x685.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
-                        <div class="referenz-badge">Verkauft</div>
+                        <img src="/Bild1.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
                     </div>
                     <div class="referenz-content">
                         <h3>Mehrfamilienhaus Stuttgart</h3>
                         <div class="referenz-meta">
-                            <div class="referenz-meta-item">
-                                <i data-lucide="map-pin"></i>
-                                <span>Stuttgart</span>
-                            </div>
-                            <div class="referenz-meta-item">
-                                <i data-lucide="home"></i>
-                                <span>12 Einheiten</span>
-                            </div>
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 8 Einheiten</span>
                         </div>
-                        <p class="referenz-description">Vollsaniertes Mehrfamilienhaus in zentraler Lage mit hochwertigem Ausbau und modernen Energiestandards.</p>
-                        <div class="referenz-tags">
-                            <span class="referenz-tag">Sanierung</span>
-                            <span class="referenz-tag">Wohnen</span>
-                        </div>
+                        <p class="referenz-description">Energetische kernsaniertes Mehrfamilienhaus nach neuesten Energiestandards.</p>
                     </div>
                 </div>
 
+                <!-- Bild 2 -->
                 <div class="referenz-card">
                     <div class="referenz-image">
-                        <img src="/Hauptstaetter-Str-106-Stuttgart-1030x685.jpg" alt="Wohn- und Geschäftshaus" loading="lazy">
-                        <div class="referenz-badge">Altbau</div>
+                        <img src="/Bild2.jpg" alt="Mehrfamilienhaus Kornwestheim" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
                     </div>
                     <div class="referenz-content">
-                        <h3>Wohn- und Geschäftshaus Stuttgart</h3>
+                        <h3>Mehrfamilienhaus Kornwestheim</h3>
                         <div class="referenz-meta">
-                            <div class="referenz-meta-item">
-                                <i data-lucide="map-pin"></i>
-                                <span>Stuttgart</span>
-                            </div>
-                            <div class="referenz-meta-item">
-                                <i data-lucide="layers"></i>
-                                <span>Mixed-Use</span>
-                            </div>
+                            <span><i data-lucide="map-pin"></i> Kornwestheim</span>
+                            <span><i data-lucide="home"></i> 7 Einheiten</span>
                         </div>
-                        <p class="referenz-description">Zentrales Altbaugebäude mit Gewerbe im Erdgeschoss und hochwertigen Wohneinheiten in den Obergeschossen.</p>
-                        <div class="referenz-tags">
-                            <span class="referenz-tag">Altbau</span>
-                            <span class="referenz-tag">Gewerbe</span>
-                        </div>
+                        <p class="referenz-description">Energetische kernsaniertes Mehrfamilienhaus nach neuesten Energiestandards.</p>
                     </div>
                 </div>
 
+                <!-- Bild 3 -->
                 <div class="referenz-card">
                     <div class="referenz-image">
-                        <img src="/Eichenweg-1-Kornwestheim-scaled-1-1030x685.jpg" alt="Fußballcenter Kornwestheim" loading="lazy">
-                        <div class="referenz-badge">In Entwicklung</div>
+                        <img src="/Bild3.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 7 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Erneuerung der Gebäudetechnik, Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 4 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild4.jpg" alt="Mehrfamilienhaus Kornwestheim" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Kornwestheim</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Kornwestheim</span>
+                            <span><i data-lucide="home"></i> 4 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 5 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild5.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-entwicklung">In Entwicklung</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 10 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Energetische kernsaniertes Mehrfamilienhaus nach neuesten Energiestandards.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 6 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild6.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 10 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 7 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild7.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 9 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 8 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild8.jpg" alt="Einfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-entwicklung">In Entwicklung</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Einfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 1 Einheit</span>
+                        </div>
+                        <p class="referenz-description">Energetische und luxuriöse Kernsanierung.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 9 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild9.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 10 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 10 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild10.jpg" alt="Mehrfamilienhaus Freiberg a. N." loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Freiberg a. N.</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Freiberg a. N.</span>
+                            <span><i data-lucide="home"></i> 4 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 11 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild11.jpg" alt="Mehrfamilienhaus Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-vermietet">Vermietet</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="home"></i> 8 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 12 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild12.jpg" alt="Bürogebäude Stuttgart" loading="lazy">
+                        <div class="referenz-badge status-vermietet">Vermietet</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Bürogebäude Stuttgart</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Stuttgart</span>
+                            <span><i data-lucide="building"></i> 6 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Einheiten.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 13 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild13.jpg" alt="Mehrfamilienhaus Fellbach" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Fellbach</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Fellbach</span>
+                            <span><i data-lucide="home"></i> 3 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von allen Einheiten.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 14 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild14.jpg" alt="Mehrfamilienhaus Ludwigsburg" loading="lazy">
+                        <div class="referenz-badge status-vermietet">Vermietet</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Ludwigsburg</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Ludwigsburg</span>
+                            <span><i data-lucide="home"></i> 15 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 15 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild15.jpg" alt="Mehrfamilienhaus Kornwestheim" loading="lazy">
+                        <div class="referenz-badge status-vermietet">Vermietet</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Kornwestheim</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Kornwestheim</span>
+                            <span><i data-lucide="home"></i> 6 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von einzelnen Wohnungen.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 16 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild16.jpg" alt="Mehrfamilienhaus Ludwigsburg" loading="lazy">
+                        <div class="referenz-badge status-verkauft">Verkauft</div>
+                    </div>
+                    <div class="referenz-content">
+                        <h3>Mehrfamilienhaus Ludwigsburg</h3>
+                        <div class="referenz-meta">
+                            <span><i data-lucide="map-pin"></i> Ludwigsburg</span>
+                            <span><i data-lucide="home"></i> 5 Einheiten</span>
+                        </div>
+                        <p class="referenz-description">Kernsanierung von allen Einheiten.</p>
+                    </div>
+                </div>
+
+                <!-- Bild 17 -->
+                <div class="referenz-card">
+                    <div class="referenz-image">
+                        <img src="/Bild17.jpg" alt="Fußballcenter Kornwestheim" loading="lazy">
+                        <div class="referenz-badge status-vermietet">Vermietet</div>
                     </div>
                     <div class="referenz-content">
                         <h3>Fußballcenter Kornwestheim</h3>
                         <div class="referenz-meta">
-                            <div class="referenz-meta-item">
-                                <i data-lucide="map-pin"></i>
-                                <span>Kornwestheim</span>
-                            </div>
-                            <div class="referenz-meta-item">
-                                <i data-lucide="square"></i>
-                                <span>3.500 m²</span>
-                            </div>
+                            <span><i data-lucide="map-pin"></i> Kornwestheim</span>
+                            <span><i data-lucide="warehouse"></i> 1 Einheit</span>
                         </div>
-                        <p class="referenz-description">Entwicklung eines modernen Fußballcenters mit hochwertiger Ausstattung und optimaler Verkehrsanbindung.</p>
-                        <div class="referenz-tags">
-                            <span class="referenz-tag">Gewerbe</span>
-                            <span class="referenz-tag">Portfolio</span>
-                        </div>
+                        <p class="referenz-description">Vermietet.</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Objekttypen Section - Dark - Compact Design -->
-    <section class="objekttypen section-dark" id="objekttypen">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">Unser Portfolio</div>
-                <h2 class="section-title">Objekttypen</h2>
-                <p class="section-description">Wir kaufen verschiedenste Immobilientypen – von Wohnimmobilien bis zu Gewerbe und Portfolios.</p>
-            </div>
-            
-            <div class="objekttypen-grid">
-                <div class="objekt-card">
-                    <div class="objekt-card-bg" style="background-image: url('/BW-Real-Estate-Referenz-41-1030x687.jpg');"></div>
-                    <div class="objekt-icon">
-                        <i data-lucide="building-2"></i>
-                    </div>
-                    <h3>Mehrfamilienhäuser</h3>
-                </div>
-
-                <div class="objekt-card">
-                     <div class="objekt-card-bg" style="background-image: url('/Hauptstaetter-Str-106-Stuttgart-1030x685.jpg');"></div>
-                    <div class="objekt-icon">
-                        <i data-lucide="store"></i>
-                    </div>
-                    <h3>Wohn- & Geschäftshäuser</h3>
-                </div>
-
-                <div class="objekt-card">
-                     <div class="objekt-card-bg" style="background-image: url('/Eichenweg-1-Kornwestheim-scaled-1-1030x685.jpg');"></div>
-                    <div class="objekt-icon">
-                        <i data-lucide="warehouse"></i>
-                    </div>
-                    <h3>Gewerbeimmobilien</h3>
-                </div>
-
-                <div class="objekt-card">
-                     <div class="objekt-card-bg" style="background-image: url('/Sanierung_Stuttgart-scaled-1-1500x840.jpg');"></div>
-                    <div class="objekt-icon">
-                        <i data-lucide="hammer"></i>
-                    </div>
-                    <h3>Sanierungsobjekte</h3>
-                </div>
-
-                <div class="objekt-card">
-                     <div class="objekt-card-bg" style="background-image: url('/BW-Real-Estate-Fenster-Tueren-4-1030x688.jpg');"></div>
-                    <div class="objekt-icon">
-                        <i data-lucide="layers"></i>
-                    </div>
-                    <h3>Portfolios</h3>
-                </div>
-
-                <div class="objekt-card">
-                     <div class="objekt-card-bg" style="background-image: url('/Albrecht-Duerer-Weg-scaled-1-1030x685.jpg');"></div>
-                    <div class="objekt-icon">
-                        <i data-lucide="square-dashed"></i>
-                    </div>
-                    <h3>Grundstücke</h3>
                 </div>
             </div>
         </div>
@@ -1633,15 +1696,16 @@
         </div>
     </section>
 
-    <!-- Team Section - Light 
+    <!-- Team Section - Light -->
     <section class="team section-white" id="team">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge">Über uns</div>
                 <h2 class="section-title">Unser Team</h2>
-                <p class="section-description">Mit über 50 Mitarbeitern sind wir Ihr verlässlicher Partner für professionellen Immobilienankauf.</p>
+                <p class="section-description">Kompetenz und Erfahrung für Ihre Immobilienprojekte.</p>
             </div>
-            
+
+            <!-- Changed Grid to 5 items -->
             <div class="team-stats">
                 <div class="stat-card">
                     <div class="stat-icon">
@@ -1668,56 +1732,122 @@
                     <div class="stat-icon">
                         <i data-lucide="euro"></i>
                     </div>
-                    <div class="stat-number">€50M</div>
-                    <div class="stat-label">Ankaufsvolumen</div>
+                    <div class="stat-number">+ 200 Mio €</div>
+                    <div class="stat-label">Transaktionsvolumen</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="maximize"></i>
+                    </div>
+                    <div class="stat-number">+ 25.000m²</div>
+                    <div class="stat-label">entwickelte Fläche</div>
                 </div>
             </div>
 
             <div class="team-grid">
+                <!-- Christoph Brechtel -->
                 <div class="team-member">
                     <div class="team-photo">
                         <i data-lucide="user"></i>
                     </div>
                     <div class="team-info">
-                        <div class="team-name">Max Mustermann</div>
+                        <div class="team-name">Christoph Brechtel</div>
                         <div class="team-role">Geschäftsführer</div>
                     </div>
                 </div>
 
+                <!-- Erdal Savun -->
                 <div class="team-member">
                     <div class="team-photo">
                         <i data-lucide="user"></i>
                     </div>
                     <div class="team-info">
-                        <div class="team-name">Anna Schmidt</div>
-                        <div class="team-role">Abteilungsleitung Ankauf</div>
+                        <div class="team-name">Erdal Savun</div>
+                        <div class="team-role">Steuerberater, Gesellschafter</div>
                     </div>
                 </div>
 
+                <!-- Zeljko Vila -->
                 <div class="team-member">
                     <div class="team-photo">
                         <i data-lucide="user"></i>
                     </div>
                     <div class="team-info">
-                        <div class="team-name">Peter Müller</div>
-                        <div class="team-role">Portfolio Manager</div>
+                        <div class="team-name">Zeljko Vila</div>
+                        <div class="team-role">Architekt, Prokurist</div>
                     </div>
                 </div>
 
+                <!-- Eduard Geier -->
                 <div class="team-member">
                     <div class="team-photo">
                         <i data-lucide="user"></i>
                     </div>
                     <div class="team-info">
-                        <div class="team-name">Sarah Becker</div>
-                        <div class="team-role">Objektmanagement</div>
+                        <div class="team-name">Eduard Geier</div>
+                        <div class="team-role">Bauleiter, Prokurist</div>
+                    </div>
+                </div>
+
+                <!-- Robin Neuer -->
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Robin Neuer</div>
+                        <div class="team-role">Projektleiter Einkauf</div>
+                    </div>
+                </div>
+
+                <!-- Dominic Booch -->
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Dominic Booch</div>
+                        <div class="team-role">Projektleiter Bau</div>
+                    </div>
+                </div>
+
+                <!-- Atanas Gitev -->
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Atanas Gitev</div>
+                        <div class="team-role">Projektleiter Elektro, HLS</div>
+                    </div>
+                </div>
+
+                <!-- Karina Schumacher -->
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Karina Schumacher</div>
+                        <div class="team-role">Objektbetreuerin, Buchhaltung</div>
+                    </div>
+                </div>
+
+                <!-- Ingrid Lohe -->
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Ingrid Lohe</div>
+                        <div class="team-role">Immobilienverwalterin</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
--->
-    <!-- Partner Section - Dark 
+
+    <!-- Partner Section - Dark -->
     <section class="partner section-dark" id="partner">
         <div class="container">
             <div class="section-header">
@@ -1759,7 +1889,7 @@
                 </div>
             </div>
         </div>
-    </section>-->
+    </section>
 
     <!-- Contact Section - Dark -->
     <section class="contact section-dark" id="kontakt">
@@ -1830,7 +1960,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <h3>BW GRUPPE</h3>
-                <p>Professioneller Immobilienankauf in Stuttgart und ganz Deutschland. Über 50 Mitarbeiter, 20 Jahre Erfahrung, bis zu €50 Millionen Ankaufsvolumen.</p>
+                <p>Professioneller Immobilienankauf in Stuttgart und ganz Deutschland.</p>
             </div>
             
             <div class="footer-links">
@@ -1838,8 +1968,7 @@
                 <ul>
                     <li><a href="#ankauf">Immobilienankauf</a></li>
                     <li><a href="#prozess">Ankaufsprozess</a></li>
-                    <li><a href="#objekttypen">Objekttypen</a></li>
-                    <li><a href="/sanierung">Sanierung</a></li>
+                    <li><a href="sanierung.html">Sanierung</a></li>
                 </ul>
             </div>
             
@@ -1848,7 +1977,7 @@
                 <ul>
                     <li><a href="#team">Über uns</a></li>
                     <li><a href="#team">Team</a></li>
-                    
+                    <li><a href="#partner">Partner</a></li>
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </div>
@@ -1856,8 +1985,9 @@
             <div class="footer-links">
                 <h4>Rechtliches</h4>
                 <ul>
-                    <li><a href="/impressum">Impressum</a></li>
-                    <li><a href="/datenschutzerklaerung">Datenschutz</a></li>
+                    <li><a href="#impressum">Impressum</a></li>
+                    <li><a href="#datenschutz">Datenschutz</a></li>
+                    <li><a href="#agb">AGB</a></li>
                 </ul>
             </div>
         </div>
@@ -1973,7 +2103,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.prozess-step, .objekt-card, .team-member, .detail-card, .stat-card, .referenz-card, .sanierung-showcase').forEach(el => {
+        document.querySelectorAll('.prozess-step, .team-member, .detail-card, .referenz-card, .sanierung-showcase').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(40px)';
             el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
