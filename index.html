@@ -172,6 +172,8 @@
         /* Hero Section */
         .hero {
             margin-top: 0;
+            /* WICHTIG: Padding auf 0 setzen, um section-padding zu überschreiben */
+            padding: 0; 
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -440,6 +442,7 @@
         }
 
         .ankauf-details {
+            /* Umgestellt auf Flexbox für Zentrierung */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -526,6 +529,7 @@
         }
 
         .prozess-grid {
+            /* Flexbox für Zentrierung */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -534,6 +538,7 @@
         }
 
         .prozess-step {
+            /* 4 columns */
             flex: 0 1 calc(25% - 2.25rem);
             min-width: 250px;
             
@@ -596,6 +601,7 @@
 
         /* Referenzen Section */
         .referenzen-grid {
+            /* Flexbox für Zentrierung */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -604,6 +610,7 @@
         }
 
         .referenz-card {
+            /* 3 columns */
             flex: 0 1 calc(33.333% - 1.7rem);
             min-width: 300px;
 
@@ -771,6 +778,7 @@
         }
 
         .team-stats {
+            /* Flexbox für Zentrierung */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -803,16 +811,17 @@
             margin-bottom: 0.5rem;
         }
         
-        /* Smaller font for big numbers */
+        /* Kleinere Schrift für die langen Zahlen */
         .stat-number-small {
             font-size: clamp(1.5rem, 2.5vw, 2.2rem);
             font-weight: 700;
             color: var(--accent);
             margin-bottom: 0.5rem;
-            margin-top: 0.5rem; /* Optical balance */
+            margin-top: 0.5rem;
         }
 
         .team-grid {
+            /* Flexbox für Zentrierung */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -821,7 +830,7 @@
         }
 
         .team-member {
-            /* 4 columns: calc(25% - gap) */
+            /* 4 columns */
             flex: 0 1 calc(25% - 1.5rem);
             min-width: 240px;
 
@@ -935,7 +944,7 @@
             border: 1px solid var(--accent);
             padding: 4rem;
             border-radius: 12px;
-            width: 100%; /* Ensure it doesn't overflow parent */
+            width: 100%;
         }
         
         .contact-cta h3 {
@@ -1082,22 +1091,19 @@
                 padding: 4rem 1.5rem;
             }
 
-            /* Fixed Mobile Hero */
+            /* Mobile Hero Padding Fix: ensure it's identical to nav */
             .hero-content {
-                padding: 0 1.5rem; /* Ensure consistent padding */
-                /* text-align: center; Removed to keep left aligned */
+                padding: 0 1.5rem; 
             }
 
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
-                /* align-items: center; Removed to keep left aligned */
-                /* justify-content: center; Removed to keep left aligned */
             }
 
             .btn {
                 width: 100%;
-                max-width: 350px; /* Prevent too wide buttons */
+                max-width: 350px;
             }
 
             .footer-content {
@@ -1118,8 +1124,8 @@
             }
             
             .contact-cta h3 {
-                font-size: 1.8rem; /* Smaller headline */
-                word-wrap: break-word; /* Ensure long words break */
+                font-size: 1.8rem;
+                word-wrap: break-word;
                 hyphens: auto;
             }
             
@@ -1615,7 +1621,6 @@
                 <p class="section-description">Kompetenz und Erfahrung für Ihre Immobilienprojekte.</p>
             </div>
 
-            <!-- Changed Grid to 5 items with small font for big numbers -->
             <div class="team-stats">
                 <div class="stat-card">
                     <div class="stat-icon">
@@ -1834,7 +1839,7 @@
                 <ul>
                     <li><a href="#ankauf">Immobilienankauf</a></li>
                     <li><a href="#prozess">Ankaufsprozess</a></li>
-                    <li><a href="sanierung.html">Sanierung</a></li>
+                    <li><a href="/sanierung">Sanierung</a></li>
                 </ul>
             </div>
             
@@ -1843,7 +1848,6 @@
                 <ul>
                     <li><a href="#team">Über uns</a></li>
                     <li><a href="#team">Team</a></li>
-                    <!-- Partner link removed -->
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </div>
