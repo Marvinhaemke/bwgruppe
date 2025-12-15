@@ -52,7 +52,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1001; /* Erhöht für Mobile Menu */
+            z-index: 1001; 
             background: rgba(15, 20, 25, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(91, 143, 199, 0.15);
@@ -79,7 +79,7 @@
             color: var(--white);
             letter-spacing: 4px;
             text-decoration: none;
-            z-index: 1002; /* Über dem Mobile Menu Overlay */
+            z-index: 1002; 
             position: relative;
         }
 
@@ -124,7 +124,7 @@
         .menu-btn {
             display: none;
             cursor: pointer;
-            z-index: 1002; /* Klickbar bleiben */
+            z-index: 1002;
             color: var(--white);
         }
 
@@ -210,7 +210,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Fluid Typography */
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 700;
             color: var(--white);
             margin-bottom: 2rem;
@@ -562,41 +562,44 @@
             margin: 0;
         }
 
-        /* NEW: Collage Grid Section */
-        .collage-grid {
+        /* Image Gallery Grid */
+        .image-gallery {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 250px;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
             margin-top: 3rem;
         }
 
-        .collage-item {
-            position: relative;
+        .gallery-item {
+            aspect-ratio: 1;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
+            position: relative;
             background: var(--lightest);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .collage-item img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s ease;
         }
 
-        .collage-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Grid Spans */
-        .collage-item.wide {
-            grid-column: span 2;
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
         
-        .collage-item.tall {
-            grid-row: span 2;
+        /* Loading animation for grid items */
+        .gallery-item {
+            opacity: 0;
+            animation: fadeInGrid 0.5s ease forwards;
+        }
+
+        @keyframes fadeInGrid {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Vorteile Section */
@@ -661,12 +664,12 @@
         }
 
         .contact-cta h3 {
-            font-size: clamp(1.8rem, 5vw, 3rem); /* FIXED: Fluid size to prevent cutoff */
+            font-size: clamp(1.8rem, 5vw, 3rem);
             margin-bottom: 1rem;
             font-weight: 700;
             color: var(--white);
-            word-wrap: break-word; /* Ensure long words wrap if needed */
-            hyphens: auto; /* Optional: adds hyphens */
+            word-wrap: break-word;
+            hyphens: auto;
         }
 
         .contact-cta p {
@@ -801,17 +804,8 @@
                 display: none;
             }
 
-            /* Show Menu Button on Mobile/Tablet */
             .menu-btn {
                 display: block;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
             }
 
             .gewerke-grid,
@@ -819,10 +813,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .collage-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .detail-section {
                 grid-template-columns: 1fr;
             }
@@ -867,16 +857,6 @@
             .vorteile-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .collage-grid {
-                grid-template-columns: 1fr;
-                grid-auto-rows: 250px;
-            }
-            
-            .collage-item.wide, .collage-item.tall {
-                grid-column: auto;
-                grid-row: auto;
-            }
 
             .cta-buttons {
                 flex-direction: column;
@@ -890,9 +870,12 @@
                 grid-template-columns: 1fr;
             }
             
-            /* Reduced padding specifically for contact box on mobile */
             .contact-cta {
                 padding: 3rem 1.5rem;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -908,7 +891,7 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo">BW GRUPPE</a>
+            <a href="index.html" class="logo">BW GRUPPE</a>
             
             <!-- Mobile Menu Button -->
             <div class="menu-btn" id="menuBtn">
@@ -916,7 +899,7 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#gewerke">Gewerke</a></li>
                 <li><a href="#referenzen">Referenzen</a></li>
                 <li><a href="#leistungen">Leistungen</a></li>
@@ -928,7 +911,7 @@
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="/" class="mobile-link">Home</a>
+        <a href="index.html" class="mobile-link">Home</a>
         <a href="#gewerke" class="mobile-link">Gewerke</a>
         <a href="#referenzen" class="mobile-link">Referenzen</a>
         <a href="#leistungen" class="mobile-link">Leistungen</a>
@@ -956,7 +939,7 @@
         </div>
     </section>
 
-    <!-- Gewerke Overview - Modified to be smaller and more subtle -->
+    <!-- Gewerke Overview -->
     <section class="section-light" id="gewerke">
         <div class="container">
             <div class="section-header">
@@ -1047,45 +1030,41 @@
         </div>
     </section>
 
-    <!-- NEW Reference Collage Section (Replaces image008.jpg) -->
+    <!-- Galerie Section (30 Bilder Grid) -->
     <section class="section-white" id="referenzen">
          <div class="container">
             <div class="section-header">
                 <div class="section-badge">Galerie</div>
                 <h2 class="section-title">Unsere Arbeit im Detail</h2>
-                <p class="section-description">Impressionen unserer abgeschlossenen Projekte und handwerklichen Details.</p>
+                <p class="section-description">Einblick in unsere Baustellen und abgeschlossene Detailarbeiten.</p>
             </div>
             
-            <div class="collage-grid">
-                <!-- Large Kitchen/Interior Shot -->
-                <div class="collage-item wide">
-                    <img src="/Sanierung_Stuttgart-scaled-1-1500x840.jpg" alt="Moderne Küche Sanierung">
-                </div>
-                <!-- Detail Heating/Bath -->
-                <div class="collage-item">
-                    <img src="/BW-Real-Estate-Referenz-17-1030x685.jpg" alt="Badezimmer Details">
-                </div>
-                <!-- Detail Electric -->
-                <div class="collage-item">
-                    <img src="/Produktbild_Elektrik-Elektronik.jpg" alt="Elektroinstallation">
-                </div>
-                <!-- Detail Interior Wood -->
-                <div class="collage-item">
-                    <img src="/BW-Real-Estate-Referenz-41-1030x687.jpg" alt="Innenausbau Holzboden">
-                </div>
-                 <!-- Detail Window -->
-                <div class="collage-item wide">
-                    <img src="/BW-Real-Estate-Fenster-Tueren-4-1030x688.jpg" alt="Fenster und Türen">
-                </div>
-                 <!-- Detail Facade -->
-                <div class="collage-item">
-                    <img src="/Beihinger-Str-41-Freiberg-aN-1030x685.jpg" alt="Fassadensanierung">
-                </div>
-                <!-- Detail Roof -->
-                 <div class="collage-item">
-                    <img src="/Referenzbild-PV2A-1030x687.jpg" alt="Dach und PV">
-                </div>
+            <div class="image-gallery" id="galleryGrid">
+                <!-- Javascript will populate this based on loop -->
             </div>
+            
+            <script>
+                // Einfacher Script Block um 30 Bilder zu generieren ohne den HTML Code aufzublähen
+                const galleryContainer = document.getElementById('galleryGrid');
+                for (let i = 1; i <= 30; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+                    div.style.animationDelay = `${i * 0.05}s`; // Staggered animation
+                    
+                    const img = document.createElement('img');
+                    img.src = `/BildBaustelle${i}.jpg`;
+                    img.alt = `Baustelle Detail ${i}`;
+                    img.loading = "lazy";
+                    
+                    // Fallback für Bilder, falls nicht vorhanden (Optional)
+                    img.onerror = function() {
+                        this.style.display = 'none'; // Versteckt kaputte Bilder
+                    };
+
+                    div.appendChild(img);
+                    galleryContainer.appendChild(div);
+                }
+            </script>
          </div>
     </section>
 
@@ -1206,7 +1185,7 @@
                 </div>
                 <div class="detail-content">
                     <h3>Elektrik vom Fach</h3>
-                    <p>Unser Expertenteam steht Ihnen mit fundierter Beratung und umfassendem Know-how im Bereich Elektrik zur Seite. Ob es um die Modernisierung Ihrer elektrischen Anlagen, die Installation neuer Systeme oder energieeffiziente Lösungen geht – wir finden die beste Option für Ihre Anforderungen. Sicherheit, Qualität und Innovation stehen bei uns an erster Stelle.</p>
+                    <p>Unser Expertenteam steht Ihnen mit fundierter Beratung und umfassendem Know-how im Bereich Elektrik zur Seite. Ob es um die Modernisierung Ihrer elektrischen Anlagen, die Installation neuer Systeme oder energieeffiziente Lösungen geht – wir finden die beste Option für Ihre Anforderungen.</p>
                     
                     <div class="detail-features">
                         <div class="feature-item">
@@ -1236,15 +1215,6 @@
                                 <p>Nachhaltige Energiegewinnung durch Solaranlagen</p>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i data-lucide="wifi"></i>
-                            </div>
-                            <div>
-                                <h4>Kommunikation</h4>
-                                <p>Moderne Netzwerk- und Kommunikationstechnik</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1260,7 +1230,7 @@
                 </div>
                 <div class="detail-content">
                     <h3>Ihr Dach in besten Händen</h3>
-                    <p>Von der Sanierung bis zur Modernisierung: Unser Team ist Ihr verlässlicher Partner für alle Dacharbeiten. Wir hören genau zu, um Ihre Wünsche zu verstehen, und bieten Ihnen individuelle Lösungen, die Langlebigkeit und optimale Funktion garantieren. Ihr Dach ist bei uns in besten Händen – sicher, stabil und perfekt auf Ihre Bedürfnisse abgestimmt.</p>
+                    <p>Von der Sanierung bis zur Modernisierung: Unser Team ist Ihr verlässlicher Partner für alle Dacharbeiten. Wir hören genau zu, um Ihre Wünsche zu verstehen, und bieten Ihnen individuelle Lösungen, die Langlebigkeit und optimale Funktion garantieren.</p>
                     
                     <div class="detail-features">
                         <div class="feature-item">
@@ -1290,31 +1260,22 @@
                                 <p>Ökologische und moderne Dachgestaltung</p>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i data-lucide="sun"></i>
-                            </div>
-                            <div>
-                                <h4>PV-Anlagen</h4>
-                                <p>Solarenergie optimal auf dem Dach nutzen</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Heizung & Sanitär Detail -->
+    <!-- Heizung & Sanitär Detail (Bild Update: _DSC8690-Bearbeitet.jpg) -->
     <section class="section-light">
         <div class="container">
             <div class="detail-section">
                 <div class="detail-image">
-                    <img src="/BW-Real-Estate-Referenz-17-1030x685.jpg" style="border-radius: 8px;"></img>
+                    <img src="/_DSC8690-Bearbeitet.jpg" alt="Effiziente Heizung" style="border-radius: 8px;"></img>
                 </div>
                 <div class="detail-content">
                     <h3>Effiziente Heizung & moderne Sanitärlösungen</h3>
-                    <p>Egal ob es um eine neue Heizungsanlage, energieeffiziente Systeme oder eine zeitgemäße Badsanierung geht – unser Team begleitet Sie mit fachkundiger Beratung und innovativen Ideen. Wir planen individuell nach Ihren Anforderungen und setzen auf hochwertige Lösungen, die Komfort und Nachhaltigkeit miteinander verbinden.</p>
+                    <p>Egal ob es um eine neue Heizungsanlage, energieeffiziente Systeme oder eine zeitgemäße Badsanierung geht – unser Team begleitet Sie mit fachkundiger Beratung und innovativen Ideen.</p>
                     
                     <div class="detail-features">
                         <div class="feature-item">
@@ -1344,31 +1305,22 @@
                                 <p>Nachhaltige Heizlösungen für die Zukunft</p>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i data-lucide="droplets"></i>
-                            </div>
-                            <div>
-                                <h4>Sanitärinstallation</h4>
-                                <p>Professionelle Installation und Wartung</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Fassade Detail -->
+    <!-- Fassade Detail (Bild Update: FassadenSanierung.png) -->
     <section class="section-white">
         <div class="container">
             <div class="detail-section reverse">
                 <div class="detail-image">
-                    <img src="/Beihinger-Str-41-Freiberg-aN-1030x685.jpg" style="border-radius: 8px;"></img>
+                    <img src="/FassadenSanierung.png" alt="Fassadensanierung" style="border-radius: 8px;"></img>
                 </div>
                 <div class="detail-content">
                     <h3>Fassadensanierung mit Stil</h3>
-                    <p>Eine gepflegte Fassade ist nicht nur ein Hingucker, sondern auch ein wichtiger Schutz für Ihre Immobilie. Unser erfahrenes Team berät Sie umfassend und entwickelt individuelle Lösungen, die Ästhetik, Langlebigkeit und Energieeffizienz kombinieren. Gemeinsam geben wir Ihrem Gebäude ein neues, hochwertiges Erscheinungsbild, das sich sehen lassen kann.</p>
+                    <p>Eine gepflegte Fassade ist nicht nur ein Hingucker, sondern auch ein wichtiger Schutz für Ihre Immobilie. Unser erfahrenes Team berät Sie umfassend und entwickelt individuelle Lösungen, die Ästhetik, Langlebigkeit und Energieeffizienz kombinieren.</p>
                     
                     <div class="detail-features">
                         <div class="feature-item">
@@ -1396,15 +1348,6 @@
                             <div>
                                 <h4>Fassadenreinigung</h4>
                                 <p>Schonende Reinigung für neuen Glanz</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i data-lucide="hammer"></i>
-                            </div>
-                            <div>
-                                <h4>Sanierung</h4>
-                                <p>Umfassende Sanierung beschädigter Fassaden</p>
                             </div>
                         </div>
                     </div>
@@ -1534,7 +1477,7 @@
             <div class="footer-links">
                 <h4>Unternehmen</h4>
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="#vorteile">Über uns</a></li>
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
@@ -1635,7 +1578,7 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.gewerk-card, .vorteil-card, .detail-section, .feature-item, .collage-item').forEach(el => {
+        document.querySelectorAll('.gewerk-card, .vorteil-card, .detail-section, .feature-item, .gallery-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(40px)';
             el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
