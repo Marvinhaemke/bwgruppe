@@ -41,6 +41,13 @@
             overflow-x: hidden;
         }
 
+        /* FIX: Lange Wörter umbrechen lassen */
+        h1, h2, h3, h4, h5, h6 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -168,7 +175,6 @@
         /* Hero Section */
         .hero {
             margin-top: 0;
-            /* FIX: Padding oben hinzufügen (140px), seitlich 0 lassen */
             padding: 140px 0 60px 0;
             min-height: 80vh;
             display: flex;
@@ -366,7 +372,6 @@
 
         /* Gewerke Grid */
         .gewerke-grid {
-            /* Changed to Flexbox for centering */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -375,7 +380,6 @@
         }
 
         .gewerk-card {
-            /* 3 columns: calc(33.33% - gap) */
             flex: 0 1 calc(33.333% - 1.1rem);
             min-width: 300px;
 
@@ -951,6 +955,18 @@
             .gewerk-card, .vorteil-card {
                 flex: 0 1 100%;
             }
+            
+            /* Smaller images on mobile for detail view */
+            .detail-image {
+                height: 300px; 
+            }
+            
+            /* FIX FÜR FASSADENBILD: Breite begrenzen und nicht beschneiden */
+            .reduce-width-mobile {
+                width: 85% !important;
+                margin: 0 auto;
+                object-fit: contain !important;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1402,10 +1418,10 @@
         <div class="container">
             <div class="detail-section reverse">
                 <div class="detail-image">
-                    <img src="/FassadenSanierung.jpg" alt="Fassadensanierung" style="border-radius: 8px;"></img>
+                    <img src="/FassadenSanierung.jpg" alt="Fassadensanierung" style="border-radius: 8px;" class="reduce-width-mobile"></img>
                 </div>
                 <div class="detail-content">
-                    <h3>Fassadensanierung mit Stil</h3>
+                    <h3>Fassaden&shy;sanierung mit Stil</h3>
                     <p>Eine gepflegte Fassade ist nicht nur ein Hingucker, sondern auch ein wichtiger Schutz für Ihre Immobilie. Unser erfahrenes Team berät Sie umfassend und entwickelt individuelle Lösungen, die Ästhetik, Langlebigkeit und Energieeffizienz kombinieren.</p>
                     
                     <div class="detail-features">
@@ -1572,8 +1588,9 @@
             <div class="footer-links">
                 <h4>Rechtliches</h4>
                 <ul>
-                    <li><a href="/impressum">Impressum</a></li>
-                    <li><a href="/datenschutzerklaerung">Datenschutz</a></li>
+                    <li><a href="#impressum">Impressum</a></li>
+                    <li><a href="#datenschutz">Datenschutz</a></li>
+                    <li><a href="#agb">AGB</a></li>
                 </ul>
             </div>
         </div>
