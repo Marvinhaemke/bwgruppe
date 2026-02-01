@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - BW GRUPPE | Immobilien-Ratgeber Stuttgart</title>
+    <meta name="description" content="Expertenwissen rund um Immobilienverkauf, Sanierung und Investitionen in Stuttgart. Aktuelle Tipps und Marktanalysen von der BW GRUPPE.">
+    <meta name="keywords" content="Immobilien Stuttgart, Immobilienverkauf, Sanierung, Mehrfamilienhaus verkaufen, Energetische Sanierung">
+    <link rel="canonical" href="https://www.bwgruppe.com/blog">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #0f1419;
+            --secondary: #1a2332;
+            --accent: #5b8fc7;
+            --accent-light: #7ba7d8;
+            --accent-dark: #4a78a8;
+            --dark: #050810;
+            --light: #f5f7fa;
+            --lightest: #fafbfc;
+            --gray: #6b7280;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--primary);
+            line-height: 1.7;
+            background: var(--lightest);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; transition: 0.3s; }
+        a:hover { color: var(--accent-light); }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1001;
+            background: rgba(15, 20, 25, 0.98);
+            border-bottom: 1px solid rgba(91, 143, 199, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 4px;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { 
+            color: var(--white); 
+            font-size: 0.95rem; 
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        .nav-links a:hover::before { width: 100%; }
+
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            color: var(--white);
+            z-index: 1002;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu a {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .blog-hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            padding: 10rem 3rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="1" fill="rgba(91,143,199,0.15)"/></svg>') repeat;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .blog-hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(91, 143, 199, 0.12);
+            border: 1px solid rgba(91, 143, 199, 0.3);
+            color: var(--accent-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Blog Grid */
+        .blog-section {
+            padding: 5rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .blog-card-image {
+            height: 280px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-card-category {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-card-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .blog-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .blog-card-meta svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .blog-card h2 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .blog-card h2 a {
+            color: inherit;
+        }
+
+        .blog-card h2 a:hover {
+            color: var(--accent);
+        }
+
+        .blog-card-excerpt {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .blog-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-card-link svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .blog-card-link:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* CTA Section */
+        .blog-cta {
+            background: var(--secondary);
+            padding: 5rem 3rem;
+            text-align: center;
+        }
+
+        .blog-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-cta h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .blog-cta p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            box-shadow: 0 15px 40px rgba(91, 143, 199, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(91, 143, 199, 0.4);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(91, 143, 199, 0.2);
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-links ul { list-style: none; }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .menu-btn { display: block; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 1rem 1.5rem; }
+            .logo { font-size: 1.4rem; }
+            .blog-hero { padding: 8rem 1.5rem 4rem; }
+            .blog-section { padding: 3rem 1.5rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .blog-card-content { padding: 1.5rem; }
+            .footer-content { grid-template-columns: 1fr; }
+            .blog-cta { padding: 3rem 1.5rem; }
+            .blog-cta h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">BW GRUPPE</a>
+            
+            <div class="menu-btn" id="menuBtn">
+                <i data-lucide="menu" width="28" height="28"></i>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#ankauf">Ankauf</a></li>
+                <li><a href="sanierung.html">Sanierung</a></li>
+                <li><a href="blog.html" style="color: var(--accent-light);">Blog</a></li>
+                <li><a href="index.html#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="index.html#ankauf">Ankauf</a>
+        <a href="sanierung.html">Sanierung</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#kontakt">Kontakt</a>
+    </div>
+
+    <header class="blog-hero">
+        <div class="blog-hero-content">
+            <div class="blog-hero-badge">Ratgeber & Insights</div>
+            <h1>Immobilien-Blog</h1>
+            <p>Expertenwissen rund um Immobilienverkauf, Sanierung und Investitionen in Stuttgart und der Region.</p>
+        </div>
+    </header>
+
+    <main class="blog-section">
+        <div class="blog-grid">
+            <!-- Artikel 1 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="/Bild1.jpg" alt="Mehrfamilienhaus in Stuttgart verkaufen">
+                    <span class="blog-card-category">Immobilienverkauf</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span><i data-lucide="calendar"></i> 28. Januar 2025</span>
+                        <span><i data-lucide="clock"></i> 8 Min. Lesezeit</span>
+                    </div>
+                    <h2><a href="blog-immobilie-verkaufen-stuttgart.html">Immobilie verkaufen in Stuttgart 2025: Der komplette Leitfaden für Eigentümer</a></h2>
+                    <p class="blog-card-excerpt">Sie möchten Ihre Immobilie in Stuttgart verkaufen? Erfahren Sie, welche Faktoren den Verkaufspreis beeinflussen, wie der Verkaufsprozess abläuft und worauf Sie bei der Käuferauswahl achten sollten.</p>
+                    <a href="blog-immobilie-verkaufen-stuttgart.html" class="blog-card-link">
+                        Artikel lesen <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artikel 2 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="/Referenzbild-PV2A-1030x687.jpg" alt="Energetische Sanierung mit Photovoltaik">
+                    <span class="blog-card-category">Sanierung</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span><i data-lucide="calendar"></i> 15. Januar 2025</span>
+                        <span><i data-lucide="clock"></i> 10 Min. Lesezeit</span>
+                    </div>
+                    <h2><a href="blog-energetische-sanierung-foerderung.html">Energetische Sanierung 2025: Fördermittel, Kosten und Wertsteigerung</a></h2>
+                    <p class="blog-card-excerpt">Die energetische Sanierung ist der Schlüssel zur Wertsteigerung Ihrer Immobilie. Wir zeigen Ihnen aktuelle Förderprogramme, typische Kosten und wie Sie durch Dämmung, neue Fenster und moderne Heiztechnik profitieren.</p>
+                    <a href="blog-energetische-sanierung-foerderung.html" class="blog-card-link">
+                        Artikel lesen <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <section class="blog-cta">
+        <div class="blog-cta-content">
+            <h2>Sie haben Fragen zu Ihrer Immobilie?</h2>
+            <p>Unsere Experten beraten Sie gerne – unverbindlich und kostenlos. Ob Verkauf, Sanierung oder Bewertung: Wir sind für Sie da.</p>
+            <a href="index.html#kontakt" class="btn btn-primary">
+                Kostenlose Beratung
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>BW GRUPPE</h3>
+                <p>Professioneller Immobilienankauf und Sanierung in Stuttgart und ganz Deutschland.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Leistungen</h4>
+                <ul>
+                    <li><a href="index.html#ankauf">Immobilienankauf</a></li>
+                    <li><a href="sanierung.html">Sanierung</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Unternehmen</h4>
+                <ul>
+                    <li><a href="index.html#team">Über uns</a></li>
+                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 BW GRUPPE. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active', isMenuOpen);
+            menuBtn.innerHTML = isMenuOpen 
+                ? '<i data-lucide="x" width="28" height="28"></i>'
+                : '<i data-lucide="menu" width="28" height="28"></i>';
+            lucide.createIcons();
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.remove('active');
+                menuBtn.innerHTML = '<i data-lucide="menu" width="28" height="28"></i>';
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+</html>
